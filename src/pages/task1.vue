@@ -5,13 +5,13 @@ const showGlasses = ref(false)
 <template>
   <Emilia :show-glasses="showGlasses" />
 
-  <div class="bg-primary-50 min-h-screen flex flex-col items-center pt-24 gap-8">
-    <div class="text-2xl font-medium text-primary-800">
+  <div class="flex flex-col min-h-screen bg-primary-50 pt-24 gap-8 items-center">
+    <div class="font-medium text-2xl text-primary-800">
       Put on Emilia's glasses
     </div>
     <Toggle v-model="showGlasses" />
     <div
-      class="shadow-lg bg-white px-8 max-w-sm py-48 transition-transform"
+      class="bg-white max-w-sm shadow-lg py-48 px-8 transition-transform"
       :class="{'scale-50': !showGlasses}"
     >
       This text is super tiny and I can't read it!
