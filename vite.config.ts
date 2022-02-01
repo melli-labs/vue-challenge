@@ -50,7 +50,7 @@ export default defineConfig({
         },
       },
       shortcuts: [
-        ['btn', 'bg-primary-200 px-6 py-3 rounded-full text-xl font-semibold text-primary-800 hover:scale-125'],
+        ['btn', 'bg-primary-200 px-6 py-3 rounded-full text-xl font-semibold text-primary-800 transition hover:scale-125'],
       ],
       presets: [
         presetUno(),

@@ -5,7 +5,7 @@ const showGlasses = ref(false)
 <template>
   <Emilia :show-glasses="showGlasses" />
 
-  <div class="flex flex-col min-h-screen bg-primary-50 pt-24 gap-8 items-center">
+  <div class="flex flex-col min-h-screen p-8 bg-primary-50 gap-8 items-center">
     <div class="font-medium text-2xl text-primary-800">
       Put on Emilia's glasses
     </div>

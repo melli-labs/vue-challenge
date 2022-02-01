@@ -9,12 +9,16 @@ interface Message {
 
 const messages: Record<string, Message> = {
   '/task1': {
-    title: 'Task 1 - Vue Basics',
-    description: 'We start off with some Vue 3 🖖 basics. We try to use the new Composition API. If your not familiar with it yet, read the new docs at https://staging.vuejs.org/.',
+    title: 'Task 1 - Vue 3 🖖 Basics',
+    description: 'Unfortunatly I can\'t read this tiny note. Please help me to put my glasses on. The button at the top of the page should toggle my glasses. We try to use the new Composition API. If your not familiar with it yet, read the new docs at https://staging.vuejs.org/.',
   },
   '/task2': {
     title: 'Task 2 - CSS / TailwindCSS',
-    description: 'Try to reproduce this great piece of artwork on the right side🎨. Only change the markup in \'components/Task2Grid.vue\'.',
+    description: 'Try to reproduce this great piece of artwork on the right side 🎨. Only change the markup in \'components/Task2Grid.vue\'.',
+  },
+  '/task3': {
+    title: 'Task 3 - Vue Router 🧭 & Pinia 🍍',
+    description: 'not done yet :(',
   },
   '/task4': {
     title: 'Task 4 - Design Challenge',
@@ -22,7 +26,7 @@ const messages: Record<string, Message> = {
   },
   '/task5': {
     title: 'Task 5 - Interaction with a REST API',
-    description: 'The Notes you can see here are using mock data. For Task 5 I need you to fill this page with Notes from our database. You can get them through this REST API: https://emilia-vue-challenge.deta.dev/docs. Also I want you to implement functions to create, update and delete Notes. FYI there are some notes in the database I don\'t want you to edit, so I made them readonly.',
+    description: 'Currently, the notes you can see here are using mock data. To finish this last task, you need to fetch the real data from our database via this REST API: https://emilia-vue-challenge.deta.dev/docs. Also, I want you to implement functions to create, update and delete Notes. FYI there are some notes in the database I don\'t want you to edit, so I made them read-only.',
   },
 }
 
@@ -41,25 +45,25 @@ const message = computed(() => messages[route.path] ?? unknownRouteMessage)
     enter-from-class="opacity-0 -translate-y-10"
     leave-to-class="opacity-0 -translate-y-10"
   >
-    <div v-if="show" class="max-w-screen-md transition bottom-0 left-0 z-10 duration-200 absolute">
+    <div v-if="show" class="max-w-screen-md fixed transition bottom-0 left-0 z-10 duration-200 absolute">
       <div
         class="bg-white rounded-lg flex border-2 border-gray-200 shadow-sm mx-4 mb-4 p-8 gap-2 relative justify-between"
       >
-      <div class="bottom-full absolute pointer-events-none">
-        <img src="/emilia.svg" class="ml-20 w-sm">
-        <Transition appear enter-from-class="opacity-0" leave-to-class="opacity-0">
-          <img
-            v-if="showGlasses"
-            src="/glasses.svg"
-            class="transition-opacity top-0 w-160px -rotate-12 translate-x-118px translate-y-83px duration-300 absolute"
-          >
-        </Transition>
-      </div>
+        <div class="bottom-full absolute pointer-events-none">
+          <img src="/emilia.svg" class="ml-20 w-sm">
+          <Transition appear enter-from-class="opacity-0" leave-to-class="opacity-0">
+            <img
+              v-if="showGlasses"
+              src="/glasses.svg"
+              class="transition-opacity top-0 w-160px -rotate-12 translate-x-118px translate-y-83px duration-300 absolute"
+            >
+          </Transition>
+        </div>
         <div>
-          <h1 class="font-medium text-xl mb-2">
+          <h1 class="font-medium text-lg mb-2">
             {{ message.title }}
           </h1>
-          <p class="text-lg">
+          <p>
             {{ message.description }}
           </p>
         </div>

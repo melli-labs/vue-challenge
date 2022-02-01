@@ -9,7 +9,6 @@ declare module 'vue' {
     GridSolution: typeof import('./src/components/GridSolution.vue')['default']
     Phone: typeof import('./src/components/Phone.vue')['default']
     Task2Grid: typeof import('./src/components/Task2Grid.vue')['default']
-    Task4MobileContent: typeof import('./src/components/Task4MobileContent.vue')['default']
     Task5Card: typeof import('./src/components/Task5Card.vue')['default']
     Toggle: typeof import('./src/components/Toggle.vue')['default']
   }
