@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@vueuse/core": "^7.5.5",
+    "@vueuse/integrations": "^7.5.5",
+    "fuse.js": "^6.5.3",
     "vue": "^3.2.29",
     "vue-router": "^4.0.12"
   },
