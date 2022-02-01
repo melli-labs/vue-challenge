@@ -60,12 +60,12 @@ const people: Array<Person> = [
 </script>
 
 <template>
-  <h1>Contacts</h1>
-  <div class="overflow-y-auto">
-    <div v-for="(person, index) in people" :key="index">
+  <div class="h-full overflow-y-auto">
+    <h1>Contacts</h1>
+    <router-link v-for="(person, index) in people" :key="index" to="/task4/detail">
       <img :src="person.imageUrl" class="w-10 h-10 rounded-full">
       <div>{{ person.name }}</div>
       <div>{{ person.role }}</div>
-    </div>
+    </router-link>
   </div>
 </template>

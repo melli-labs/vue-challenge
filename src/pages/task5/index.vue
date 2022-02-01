@@ -42,12 +42,16 @@ const mockData: Array<Note> = [
       <div
         class="flex-grow bg-white rounded-md flex border-2 border-primary-200 h-12 shadow-sm px-3 gap-3 items-center focus-within:outline-none focus-within:border-primary-500 focus-within:ring-3 focus-within:ring-primary-300"
       >
-        <div class="h-6 fill-current- text-primary-700 w-6 i-heroicons-outline:search" />
+        <div class="h-6 text-primary-700 w-6 i-heroicons-outline:search" />
         <input autofocus class="flex-grow h-full fill-primary-700 focus:outline-none">
       </div>
+      <router-link to="/end" class="bg-tertiary-100 text-tertiary-800 font-medium rounded-md flex border-2 border-tertiary-200 h-12 shadow-sm px-3 gap-1.5 items-center focus-within:outline-none focus-within:border-primary-500 focus-within:ring-3 focus-within:ring-primary-300">
+        <div class="i-heroicons-outline:chevron-right" />
+        Finish task
+      </router-link>
     </div>
     <div class="grid gap-4 md:min-w-screen-sm lg:grid-cols-2">
-      <Task5Card v-for="note in mockData" :key="note.key" :note="note" />
+      <Note v-for="note in mockData" :key="note.key" :note="note" />
     </div>
   </div>
 </template>

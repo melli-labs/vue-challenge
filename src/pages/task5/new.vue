@@ -8,7 +8,7 @@ const onSubmit = () => alert('🏗️ not implemented yet 🏗️')
 
 <template>
   <div class="rounded-md bg-white border-2 border-primary-200 shadow-sm overflow-hidden">
-    <h1 class="p-6 text-2xl font-medium text-primary-700">
+    <h1 class="p-6 text-3xl font-medium text-primary-700 text-center">
       New Note 📝
     </h1>
     <form @submit.prevent="onSubmit">

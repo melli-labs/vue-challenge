@@ -1,5 +1,6 @@
 <script setup lang="ts">
-withDefaults(defineProps<{ showGlasses: boolean }>(), { showGlasses: false })
+withDefaults(defineProps<{ showGlasses?: boolean }>(), { showGlasses: false })
+
 const show = ref(true)
 
 interface Message {
@@ -10,19 +11,19 @@ interface Message {
 const messages: Record<string, Message> = {
   '/task1': {
     title: 'Task 1 - Vue 3 🖖 Basics',
-    description: 'Unfortunately, I can\'t read this tiny note 🧐. Can you help me to put on my glasses 👓️?. Therefore take a look at `src/pages/task1`. The button at the top of the page should toggle my glasses. But the `showGlasses` variable is not reactive yet. We try to use the new Composition API in combination with the <script setup> style. If you are not familiar with it yet, read the new docs at https://staging.vuejs.org/guide/introduction.html#api-styles. After you finished this task a link to the next task will appear at the bottom of this page!',
+    description: 'Unfortunately, I can\'t read this tiny note 🧐. Can you help me to put on my glasses 👓️?. Therefore take a look at `src/pages/task1`. The button at the top of the page should toggle my glasses. But the `showGlasses` variable is not reactive yet. We try to use the new Composition API in combination with the <script setup> style. If you are not familiar with it yet, read the new docs at https://staging.vuejs.org/guide/introduction.html#api-styles. After you finished this task a link to the next task will appear at the bottom of this page!',
   },
   '/task2': {
     title: 'Task 2 - CSS / TailwindCSS',
-    description: 'Try to reproduce this great piece of artwork on the right side 🎨. Only change the markup in \'components/Task2Grid.vue\'. When you are satisfied with your solution click the button at the top to go to the next task.',
+    description: 'Try to reproduce this great piece of artwork on the right side 🎨. Only change the markup in `components/Artwork.vue`. When you are satisfied with your solution click the button at the top to go to the next task.',
   },
   '/task3': {
     title: 'Task 3 - Vue Router 🧭 & Pinia 🍍',
     description: 'not done yet :(',
   },
   '/task4': {
-    title: 'Task 4 - Design Challenge',
-    description: 'Does not look very mobile friendly can you help us?',
+    title: 'Task 4 - Design Challenge 🎨',
+    description: 'This doesn\'t look very mobile-friendly - can you help us? The fourth task is to design this contacts view. We have used our team as sample data so you can get to know us already 🤗. The first screen consists of a navbar and a list of contacts. Clicking on a contact opens a more detailed view of a single contact. I recommend starting with the styling of the navbar located in `pages/task4.vue`. Then I would clean up the contacts-list in `pages/task4/index.vue`. Finally, I would design the detail page in `pages/task4/detail.vue`. When you are satisfied with your solution, you can use the last button on the navigation bar to get to the final task.',
   },
   '/task5': {
     title: 'Task 5 - Interaction with a REST API',
@@ -31,6 +32,10 @@ const messages: Record<string, Message> = {
   '/task5/new': {
     title: 'Task 5 - New Note',
     description: 'Post the data to https://emilia-vue-challenge.deta.dev/notes.',
+  },
+  '/end': {
+    title: 'Wow 🔥',
+    description: 'Amazing 🤩! This is really impressive. We would love to get in touch with you 💯. Therefore, create a pull request 📥️ with your solutions ✅ at https://github.com/mit-emilia/vue-challenge!',
   },
 }
 

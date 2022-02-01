@@ -48,7 +48,7 @@ export default defineConfig({
       },
       shortcuts: [
         ['btn', 'bg-primary-200 px-6 py-3 rounded-full text-xl font-semibold text-primary-800 transition hover:scale-125'],
-        ['input', 'border rounded-md border-gray-200 h-10 shadow-sm px-3 focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300;'],
+        ['input', 'border rounded-md border-gray-200 h-10 shadow-sm px-3 focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300'],
       ],
       presets: [
         presetUno(),
