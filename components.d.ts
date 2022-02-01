@@ -4,13 +4,11 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Counter: typeof import('./src/components/Counter.vue')['default']
-    Emilia: typeof import('./src/components/Emilia.vue')['default']
-    GridSolution: typeof import('./src/components/GridSolution.vue')['default']
-    Phone: typeof import('./src/components/Phone.vue')['default']
+    Emilia: typeof import('./src/components/ui/Emilia.vue')['default']
+    Phone: typeof import('./src/components/ui/Phone.vue')['default']
     Task2Grid: typeof import('./src/components/Task2Grid.vue')['default']
     Task5Card: typeof import('./src/components/Task5Card.vue')['default']
-    Toggle: typeof import('./src/components/Toggle.vue')['default']
+    Toggle: typeof import('./src/components/ui/Toggle.vue')['default']
   }
 }
 

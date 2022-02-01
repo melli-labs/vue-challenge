@@ -7,7 +7,7 @@
         🏗️ Under construction ...
       </div>
       <div>
-        @Valentin, please skip this task!
+        Please skip this task!
       </div>
       <router-link to="/task4" class="btn mt-4">
         Go to task 4

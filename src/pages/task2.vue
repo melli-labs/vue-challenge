@@ -4,7 +4,7 @@
   <div class="bg-primary-50 min-h-screen p-4 pt-16">
     <div class="mx-auto flex justify-center mb-8">
       <router-link to="/task3" class="btn">
-        Go to task 3 if your satisfied with your solution!
+        Go to task 3
       </router-link>
     </div>
     <div class="container mx-auto grid gap-16 lg:grid-cols-2">
@@ -18,7 +18,7 @@
         <div class="text-xl text-center">
           Try to reproduce this 👍️
         </div>
-        <GridSolution class="w-64 h-64 sm:w-100 sm:h-100" />
+        <img src="/task2.png" width="400" height="400">
       </div>
     </div>
   </div>

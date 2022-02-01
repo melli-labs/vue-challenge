@@ -10,11 +10,11 @@ interface Message {
 const messages: Record<string, Message> = {
   '/task1': {
     title: 'Task 1 - Vue 3 🖖 Basics',
-    description: 'Unfortunatly I can\'t read this tiny note. Please help me to put my glasses on. The button at the top of the page should toggle my glasses. We try to use the new Composition API. If your not familiar with it yet, read the new docs at https://staging.vuejs.org/.',
+    description: 'Unfortunately, I can\'t read this tiny note 🧐. Can you help me to put on my glasses 👓️?. Therefore take a look at `src/pages/task1`. The button at the top of the page should toggle my glasses. But the `showGlasses` variable is not reactive yet. We try to use the new Composition API in combination with the <script setup> style. If you are not familiar with it yet, read the new docs at https://staging.vuejs.org/guide/introduction.html#api-styles. After you finished this task a link to the next task will appear at the bottom of this page!',
   },
   '/task2': {
     title: 'Task 2 - CSS / TailwindCSS',
-    description: 'Try to reproduce this great piece of artwork on the right side 🎨. Only change the markup in \'components/Task2Grid.vue\'.',
+    description: 'Try to reproduce this great piece of artwork on the right side 🎨. Only change the markup in \'components/Task2Grid.vue\'. When you are satisfied with your solution click the button at the top to go to the next task.',
   },
   '/task3': {
     title: 'Task 3 - Vue Router 🧭 & Pinia 🍍',
@@ -27,6 +27,10 @@ const messages: Record<string, Message> = {
   '/task5': {
     title: 'Task 5 - Interaction with a REST API',
     description: 'Currently, the notes you can see here are using mock data. To finish this last task, you need to fetch the real data from our database via this REST API: https://emilia-vue-challenge.deta.dev/docs. Also, I want you to implement functions to create, update and delete Notes. FYI there are some notes in the database I don\'t want you to edit, so I made them read-only.',
+  },
+  '/task5/new': {
+    title: 'Task 5 - New Note',
+    description: 'Post the data to https://emilia-vue-challenge.deta.dev/notes.',
   },
 }
 
@@ -68,7 +72,7 @@ const message = computed(() => messages[route.path] ?? unknownRouteMessage)
           </p>
         </div>
         <div
-          class="cursor-pointer flex-shrink-0 h-8 opacity-65 w-8 i-carbon:close hover:opacity-50"
+          class="cursor-pointer flex-shrink-0 h-6 opacity-65 w-6 i-heroicons-outline:x hover:opacity-50"
           @click="show = false"
         />
       </div>

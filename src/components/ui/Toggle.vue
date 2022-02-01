@@ -6,11 +6,7 @@ const emit = defineEmits<{ (name: 'update:modelValue', v: boolean): void }>()
 <template>
   <div
     class="grid w-32 rounded-full border-2 border-gray-200 cursor-pointer"
-    :class="
-      modelValue
-        ? 'bg-primary-300 border-primary-400 '
-        : 'bg-gray-100 border-primary-00'
-    "
+    :class="modelValue ? 'bg-primary-300 border-primary-400 ' : 'bg-gray-100 border-primary-00'"
     @click.prevent="emit('update:modelValue', !modelValue)"
   >
     <span

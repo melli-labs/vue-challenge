@@ -1,5 +1,3 @@
-/// <reference types="vitest" />
-
 import path from 'path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
@@ -28,7 +26,6 @@ export default defineConfig({
         'vue',
         'vue-router',
         '@vueuse/core',
-        'vitest',
       ],
       dts: true,
     }),
@@ -51,6 +48,7 @@ export default defineConfig({
       },
       shortcuts: [
         ['btn', 'bg-primary-200 px-6 py-3 rounded-full text-xl font-semibold text-primary-800 transition hover:scale-125'],
+        ['input', 'border rounded-md border-gray-200 h-10 shadow-sm px-3 focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300;'],
       ],
       presets: [
         presetUno(),
@@ -61,9 +59,4 @@ export default defineConfig({
       ],
     }),
   ],
-
-  // https://github.com/vitest-dev/vitest
-  test: {
-    environment: 'jsdom',
-  },
 })
