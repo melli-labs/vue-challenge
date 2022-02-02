@@ -3,6 +3,7 @@ const title = ref('')
 const author = ref('')
 const body = ref('')
 
+const isSubmitting = ref(false)
 const onSubmit = () => alert('🏗️ not implemented yet 🏗️')
 </script>
 
@@ -36,8 +37,11 @@ const onSubmit = () => alert('🏗️ not implemented yet 🏗️')
       </div>
 
       <div class="px-6 py-3 bg-primary-100 flex flex-row-reverse gap-6">
-        <button class="bg-primary-50 text-primary-800 font-medium rounded-md flex border-2 border-primary-200 h-12 shadow-sm px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300">
-          Create Note
+        <button
+          class="bg-primary-50 font-medium rounded-md flex border-2 h-12 shadow-sm px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"
+          :class="isSubmitting ? 'text-primary-500 border-primary-100' : 'text-primary-800  border-primary-200'"
+        >
+          {{ isSubmitting ? 'Creating Note ...': 'Create Note' }}
         </button>
         <router-link to="/task5" class="text-primary-800 font-medium rounded-md flex h-12 px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300">
           Cancel

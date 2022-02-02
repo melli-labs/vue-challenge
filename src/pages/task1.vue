@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const showGlasses = ref(false)
+const showGlasses = false
 </script>
 
 <template>

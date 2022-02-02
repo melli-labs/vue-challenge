@@ -5,7 +5,7 @@ import type { Note } from '~/types'
 const mockData: Note[] = [
   {
     title: 'One more thing',
-    body: 'The readonly notes cannot be edited or deleted. All other notes should be editable or deletable via the dropdown on the top right.',
+    body: 'There are some notes which are readonly 🔒️. These notes cannot be edited or deleted. But for the other notes we should be able to use the dropdown to edit ✍️ or delete ❌ them.',
     author: 'Emilia',
     key: 'f24jv9ssdjf28',
     readonly: true,
@@ -14,7 +14,7 @@ const mockData: Note[] = [
   },
   {
     title: 'Tip: useFetch from VueUse 🧩',
-    body: 'Consider using the useFetch utility from the VueUse package. It provides a convenient and reactive wrapper for the Fetch API.',
+    body: 'Consider using the useFetch utility from the VueUse package for this task. It provides a convenient and reactive wrapper for the Fetch API.',
     author: 'Felix',
     key: 'j3hhw92j4r234',
     readonly: true,
@@ -23,7 +23,7 @@ const mockData: Note[] = [
   },
   {
     title: '📝 TODO',
-    body: 'Hire a frontend developer',
+    body: 'Hire a frontend developer.',
     author: 'Hans',
     readonly: false,
     key: 'jfpnzy2nxu2pdu',
@@ -32,6 +32,7 @@ const mockData: Note[] = [
   },
 ]
 
+const isFetching = ref(false)
 const input = ref('')
 const { results } = useFuse(input, mockData, {
   fuseOptions: { keys: ['title', 'body', 'author'] },
@@ -65,7 +66,10 @@ const { results } = useFuse(input, mockData, {
         <div class="i-heroicons-outline:chevron-right" />Finish task
       </router-link>
     </div>
-    <div v-if="results.length > 0" class="grid gap-4 md:min-w-screen-sm lg:grid-cols-2">
+    <div v-if="isFetching" class="min-h-xs grid place-items-center">
+      <div class="i-tabler:loader-quarter animate-spin w-6 h-6 text-primary-800" />
+    </div>
+    <div v-else-if="results.length > 0" class="grid gap-4 md:min-w-screen-sm lg:grid-cols-2">
       <Note v-for="(result, index) in results" :key="index" :note="result.item" />
     </div>
     <div v-else class="min-h-xs grid place-items-center text-2xl text-primary-700 font-medium tracking-wide">

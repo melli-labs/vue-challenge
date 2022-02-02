@@ -15,6 +15,7 @@ onClickOutside(dropdownRef, (event) => {
 const edit = ref(false)
 const title = ref(props.note.title)
 const body = ref(props.note.body)
+const isUpdating = false
 
 const deleteNote = () => alert('not implemented')
 const updateNote = () => alert('not implemented')
@@ -85,10 +86,11 @@ const updateNote = () => alert('not implemented')
       </p>
       <div v-if="edit" class="flex flex-row-reverse">
         <button
-          class="bg-primary-50 text-primary-800 font-medium rounded-md flex border-2 border-primary-200 h-12 shadow-sm px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"
+          class="bg-primary-50 font-medium rounded-md flex border-2 h-12 shadow-sm px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"
+          :class="isUpdating ? 'text-primary-500 border-primary-100' : 'text-primary-800  border-primary-200'"
           @click="updateNote"
         >
-          Update Note
+          {{ isUpdating ? 'Updating Note ...': 'Update Note' }}
         </button>
         <button
           class="text-primary-800 font-medium rounded-md flex h-12 px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"

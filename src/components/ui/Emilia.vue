@@ -15,23 +15,23 @@ const messages: Record<string, Message> = {
   },
   '/task2': {
     title: 'Task 2 - CSS / TailwindCSS',
-    description: 'Try to reproduce this great piece of artwork on the right side 🎨. Only change the markup in `components/Artwork.vue`. When you are satisfied with your solution click the button at the top to go to the next task.',
+    description: 'Try to reproduce this great piece of artwork on the right side 🎨 using the TailwindCSS utility classes. Only change the markup in `components/Artwork.vue`. When you are satisfied with your solution click the button at the top to go to the next task. P.S. If you wonder why TailwindCSS is not installed, we use the alternative Atomic CSS engine \'UnoCSS\' 🔥. But the class names are identical to TailwindCSS 🍃.',
   },
   '/task3': {
     title: 'Task 3 - Vue Router 🧭 & Pinia 🍍',
-    description: 'not done yet :(',
+    description: 'under construction',
   },
   '/task4': {
     title: 'Task 4 - Design Challenge 🎨',
-    description: 'This doesn\'t look very mobile-friendly - can you help us? The fourth task is to design this contacts view. We have used our team as sample data so you can get to know us already 🤗. The first screen consists of a navbar and a list of contacts. Clicking on a contact opens a more detailed view of a single contact. I recommend starting with the styling of the navbar located in `pages/task4.vue`. Then I would clean up the contacts-list in `pages/task4/index.vue`. Finally, I would design the detail page in `pages/task4/detail.vue`. When you are satisfied with your solution, you can use the last button on the navigation bar to get to the final task.',
+    description: 'This doesn\'t look very mobile-friendly - can you help us? The fourth task is to design this contacts view. We have used our team as sample data so you can already get to know us 🤗. The first screen consists of a navbar and a list of contacts. Clicking on a contact opens a more detailed view of a single contact. I recommend starting with the styling of the navbar located in `pages/task4.vue`. Then I would clean up the contacts-list in `components/ContactList.vue`. Finally, I would design the detail page in `components/ContactDetail.vue`. When you are satisfied with your solution, you can click on the arrow icon ➡️ in the navbar to get to the final task 🚀.',
   },
   '/task5': {
     title: 'Task 5 - Interaction with a REST API',
-    description: 'Currently, the notes you can see here are using mock data. To finish this last task, you need to fetch the real data from our database via this REST API: https://emilia-vue-challenge.deta.dev/docs. Also, I want you to implement functions to create, update and delete Notes. FYI there are some notes in the database I don\'t want you to edit, so I made them read-only.',
+    description: 'In our last task, we will interact with a REST API 📥️. You can find the Swagger documentation at https://emilia-vue-challenge.deta.dev/docs. The goal is to implement a simple notes 📝 application - very creative I know 🤪. Right now, the notes you can see here are using mock data. To complete this last task, you need to fetch the real data from our database 📊. Furthermore, it should be possible to create a new note using the \'New Note\' button and edit and delete notes using the dropdown menu. Most of the user interface should already be implemented and you should only need to implement the API logic. But of course, you are free to make improvements to the current UI 😊. When you\'re done 🏁, hit the big yellow button at the top right!',
   },
   '/task5/new': {
     title: 'Task 5 - New Note',
-    description: 'Post the data to https://emilia-vue-challenge.deta.dev/notes.',
+    description: 'Post the data of this form to https://emilia-vue-challenge.deta.dev/notes.',
   },
   '/end': {
     title: 'Wow 🔥',
