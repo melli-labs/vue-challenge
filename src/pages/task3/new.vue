@@ -4,7 +4,7 @@ const author = ref('')
 const body = ref('')
 
 const isSubmitting = ref(false)
-const onSubmit = () => alert('🏗️ not implemented yet 🏗️')
+const onSubmit = () => alert('not implemented')
 </script>
 
 <template>
@@ -43,7 +43,7 @@ const onSubmit = () => alert('🏗️ not implemented yet 🏗️')
         >
           {{ isSubmitting ? 'Creating Note ...': 'Create Note' }}
         </button>
-        <router-link to="/task5" class="text-primary-800 font-medium rounded-md flex h-12 px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300">
+        <router-link to="/task3" class="text-primary-800 font-medium rounded-md flex h-12 px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300">
           Cancel
         </router-link>
       </div>

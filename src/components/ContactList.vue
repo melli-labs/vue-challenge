@@ -18,7 +18,7 @@ const emit = defineEmits<{ (name: 'select', v: number): void }>()
     >
       <img
         :src="`https://meetap-it.gitlab.io/emilia/assets/team/${person.handle}.webp`"
-        class="w-10 h-10 rounded-full"
+        class="w-12 h-12 rounded-full"
       >
       <div>{{ person.name }}</div>
       <div>{{ person.role }}</div>

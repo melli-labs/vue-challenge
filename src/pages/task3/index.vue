@@ -7,7 +7,7 @@ const mockData: Note[] = [
     title: 'One more thing',
     body: 'There are some notes which are readonly 🔒️. These notes cannot be edited or deleted. But for the other notes we should be able to use the dropdown to edit ✍️ or delete ❌ them.',
     author: 'Emilia',
-    key: 'f24jv9ssdjf28',
+    key: 'f24jv9ss',
     readonly: true,
     createdAt: '2022-01-31 09:01:33',
     updatedAt: '2022-01-31 09:01:33',
@@ -16,7 +16,7 @@ const mockData: Note[] = [
     title: 'Tip: useFetch from VueUse 🧩',
     body: 'Consider using the useFetch utility from the VueUse package for this task. It provides a convenient and reactive wrapper for the Fetch API.',
     author: 'Felix',
-    key: 'j3hhw92j4r234',
+    key: 'j3hhw92j',
     readonly: true,
     createdAt: '2022-01-24 12:12:45',
     updatedAt: '2022-01-24 12:12:45',
@@ -26,13 +26,13 @@ const mockData: Note[] = [
     body: 'Hire a frontend developer.',
     author: 'Hans',
     readonly: false,
-    key: 'jfpnzy2nxu2pdu',
+    key: 'jfpnzy2nu',
     createdAt: '2022-01-27 16:52:20',
     updatedAt: '2022-01-31 16:52:20',
   },
 ]
 
-const isFetching = ref(false)
+const isFetching = false
 const input = ref('')
 const { results } = useFuse(input, mockData, {
   fuseOptions: { keys: ['title', 'body', 'author'] },
@@ -44,7 +44,7 @@ const { results } = useFuse(input, mockData, {
   <div class="grid gap-6">
     <div class="flex gap-4 flex-col sm:flex-row">
       <router-link
-        to="/task5/new"
+        to="/task3/new"
         class="bg-primary-100 text-primary-800 font-medium rounded-md border-2 border-primary-200 h-12 shadow-sm px-3 flex gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"
       >
         <div class="i-heroicons-outline:plus" />New Note
@@ -60,10 +60,10 @@ const { results } = useFuse(input, mockData, {
         >
       </div>
       <router-link
-        to="/end"
+        to="/task4"
         class="bg-tertiary-100 text-tertiary-800 font-medium rounded-md border-2 border-tertiary-200 h-12 shadow-sm px-3 flex gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"
       >
-        <div class="i-heroicons-outline:chevron-right" />Finish task
+        <div class="i-heroicons-outline:chevron-right" />Next task
       </router-link>
     </div>
     <div v-if="isFetching" class="min-h-xs grid place-items-center">

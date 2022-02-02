@@ -68,15 +68,7 @@ const selectedPerson = ref<Person | null>(null)
           @back="selectedPerson = null"
         />
         <ContactList v-else :people="people" @select="(i) => selectedPerson = people[i]" />
-        <nav class="mt-auto">
-          <div class="i-heroicons-outline:home w-8 h-8" />
-          <div class="i-heroicons-outline:phone w-8 h-8" />
-          <div class="i-heroicons-outline:calendar w-8 h-8" />
-          <div class="i-heroicons-outline:user w-8 h-8 text-primary-600" />
-          <router-link to="/task5">
-            <div class="i-heroicons-outline:arrow-circle-right w-8 h-8" />
-          </router-link>
-        </nav>
+        <NavBar class="mt-auto" />
       </div>
     </Phone>
   </div>

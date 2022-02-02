@@ -1,17 +1,17 @@
 <template>
   <Emilia />
 
-  <div class="min-h-screen p-4 bg-primary-50 grid place-items-center">
-    <div class="grid gap-2 place-items-center">
-      <div class="text-4xl">
-        🏗️ Under construction ...
-      </div>
-      <div>
-        Please skip this task!
-      </div>
-      <router-link to="/task4" class="btn mt-4">
-        Go to task 4
-      </router-link>
+  <div class="min-h-screen bg-primary-50">
+    <div class="container max-w-screen-lg mx-auto px-4 py-12">
+      <router-view v-slot="{ Component }">
+        <Transition
+          mode="out-in"
+          enter-from-class="-translate-y-2 opacity-0"
+          leave-to-class="-translate-y-2 opacity-0"
+        >
+          <component :is="Component" class="transition duration-200" />
+        </Transition>
+      </router-view>
     </div>
   </div>
 </template>

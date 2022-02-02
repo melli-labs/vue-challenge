@@ -12,7 +12,6 @@ Hi 👋, I am Emilia!
 - ⚡️ [Vue 3](https://github.com/vuejs/vue-next), [Vite 2](https://github.com/vitejs/vite), [pnpm](https://pnpm.js.org/)
 - [🧭 Vue Router](https://github.com/vuejs/vue-router)
   - [🗂 `vite-plugin-pages`](https://github.com/hannoeru/vite-plugin-pages) - file system based routing
-- 🍍 [Pinia](https://pinia.esm.dev) - Intuitive, type safe, light and flexible Store for Vue using the composition api
 - 🎨 [UnoCSS](https://github.com/antfu/unocss) (On-demand [TailwindCSS](https://tailwindcss.com/)) - The instant on-demand atomic CSS engine.
     - 😃 Use icons from any icon sets in [Pure CSS](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
 - [🧩 VueUse](https://github.com/antfu/vueuse) - collection of useful composition APIs
