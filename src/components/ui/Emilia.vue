@@ -19,7 +19,7 @@ const messages: Record<string, Message> = {
   },
   '/task3': {
     title: 'Task 3 - Interaction with a REST API',
-    description: 'In our third task, we will interact with a REST API 📥️. You can find the Swagger documentation at https://emilia-vue-challenge.deta.dev/docs. The goal is to implement a simple notes 📝 application - very creative I know 🤪. Right now, the notes you can see here are using mock data. To complete this last task, you need to fetch the real data from our database 📊. Furthermore, it should be possible to create a new note using the \'New Note\' button and edit and delete notes using the dropdown menu. Most of the user interface should already be implemented and you should only need to implement the API logic. But of course, you are free to make improvements to the current UI 😊. When you\'re done ✅, hit the big yellow button at the top right!',
+    description: 'In our third task, we will interact with a REST API 📥️. You can find the Swagger documentation at https://emilia-vue-challenge.deta.dev/docs. The goal is to implement a simple notes 📝 application. Right now, the notes you can see here are using mock data. To complete this last task, you need to fetch the real data from our database 📊. Furthermore, it should be possible to create a new note using the \'New Note\' button and edit and delete notes using the dropdown menu. Most of the user interface is already there and you only need to implement the API logic. But of course, you are free to make improvements to the current UI 😊. When you\'re done ✅, hit the big yellow button at the top right!',
   },
   '/task3/new': {
     title: 'Task 3 - New Note',
@@ -27,15 +27,15 @@ const messages: Record<string, Message> = {
   },
   '/task4': {
     title: 'Task 4 - Design Challenge 🎨',
-    description: 'In this last task, your creativity is needed! The goal is to design this contacts view. We have used our team as sample data so you can already get to know us 🤗. The first screen consists of a navbar and a list of contacts 👥. Clicking on a contact opens a more detailed view of a single contact 👤. I recommend starting with the styling of the navbar located in `components/NavBar.vue`. Then I would style the contacts-list in `components/ContactList.vue`. Finally, I would design the detail page in `components/ContactDetail.vue`. When you are satisfied with your solution, click on the check icon ✅ in the navbar to finish the challenge 🏁.',
+    description: 'In this last task, your creativity is needed! The goal is to design this contacts view. We used our team as sample data so you already get to know us 🤗. The first screen consists of a navbar and a list of contacts 👥. Clicking on a contact opens a more detailed view of a single contact 👤. I recommend starting with the styling of the navbar located in `components/NavBar.vue`. Then I would style the contacts-list in `components/ContactList.vue`. Finally, I would design the detail page in `components/ContactDetail.vue`. When you are satisfied with your solution, click on the check icon ✅ in the navbar to finish the challenge 🏁.',
   },
   '/task5': {
     title: 'Task 5 - Vue Router 🧭 & Pinia 🍍',
     description: 'under construction',
   },
   '/end': {
-    title: 'Wow 🔥',
-    description: 'Amazing 🤩! This is really impressive. We would love to get in touch with you 💯. Therefore, create a pull request 📥️ with your solution ✅ at https://github.com/mit-emilia/vue-challenge!',
+    title: 'You solved the challenge 🔥',
+    description: 'Amazing 🤩! This is impressive. We would love to get in touch with you 💯. Therefore, create a pull request 📥️ with your solution ✅ at https://github.com/mit-emilia/vue-challenge!',
   },
 }
 
