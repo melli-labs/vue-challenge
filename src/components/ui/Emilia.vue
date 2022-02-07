@@ -11,7 +11,7 @@ interface Message {
 const messages: Record<string, Message> = {
   '/task1': {
     title: 'Task 1 - Vue 3 🖖 Basics',
-    description: 'Unfortunately, I can\'t read this tiny note 🧐. Can you help me to put on my glasses 👓️?. Therefore take a look at `src/pages/task1`. The button at the top of the page should toggle my glasses. But the `showGlasses` variable is not reactive yet. We try to use the new Composition API in combination with the <script setup> style. If you are not familiar with it yet, read the new docs at https://staging.vuejs.org/guide/introduction.html#api-styles. After you finished this task a link to the next task will appear at the bottom of this page!',
+    description: 'Unfortunately, I can\'t read this tiny note 🧐. Can you help me to put on my glasses 👓️?. Therefore take a look at `src/pages/task1`. The button at the top of the page should toggle my glasses. But the `showGlasses` variable is not reactive yet. We try to use the new Composition API in combination with the <script setup> style. If you are not familiar with it yet, read the new docs at https://vuejs.org/guide/introduction.html#api-styles. After you finished this task a link to the next task will appear at the bottom of this page!',
   },
   '/task2': {
     title: 'Task 2 - CSS / TailwindCSS',

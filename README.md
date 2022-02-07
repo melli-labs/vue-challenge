@@ -35,7 +35,7 @@ When you finish all tasks create a pull request. We would love to interview you 
 
 > Based on [Vitesse template](https://github.com/antfu/vitesse-lite)
 
-- ⚡️ [Vue 3](https://github.com/vuejs/vue-next), [Vite 2](https://github.com/vitejs/vite), [pnpm](https://pnpm.js.org/)
+- ⚡️ [Vue 3](https://github.com/vuejs/core), [Vite 2](https://github.com/vitejs/vite), [pnpm](https://pnpm.js.org/)
 - [🧭 Vue Router](https://github.com/vuejs/vue-router)
   - [🗂 `vite-plugin-pages`](https://github.com/hannoeru/vite-plugin-pages) - file system based routing
 - 🎨 [UnoCSS](https://github.com/antfu/unocss) (On-demand [TailwindCSS](https://tailwindcss.com/)) - The instant on-demand atomic CSS engine.
@@ -43,4 +43,4 @@ When you finish all tasks create a pull request. We would love to interview you 
 - [🧩 VueUse](https://github.com/antfu/vueuse) - collection of useful composition APIs
 - [📥 `unplugin-auto-import`](https://github.com/antfu/unplugin-auto-import) - Directly use Vue Composition API and others without importing
 - [📦 `unplugin-vue-components`](https://github.com/antfu/unplugin-vue-components) - components auto import
-- 🔥 Use the [new `<script setup>` style](https://staging.vuejs.org/api/sfc-script-setup.html)
+- 🔥 Use the [new `<script setup>` style](https://vuejs.org/api/sfc-script-setup.html)
