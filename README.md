@@ -1,7 +1,3 @@
-<h2 align="center">
-🛑 No open frontend positions at the moment 🛑
-</h2>
-
 # Emilia Vue 🖖 Challenge
 
 Hi 👋, I am Emilia!
