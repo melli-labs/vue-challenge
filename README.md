@@ -8,7 +8,9 @@ Can you solve my frontend challenge?
 
 This repo is a simple Vue 3 project with four different routes. Each route contains a different task focusing on Vue 3's Composition API, TailwindCSS & UI design, and the usage of a simple REST API. 
 
-The goal is to solve all tasks and create a pull request to this repository with your solution.
+The goal is to solve all tasks and create a pull request to this repository with your solution. To admire your work, we will deploy your branch to `https://deploy-preview-##--emilia-vue-challenge.netlify.app`, where `##` is the number of your PR.
+
+Happy coding!
 
 ## Setup
 
@@ -25,7 +27,6 @@ pnpm dev
 ```
 
 When you finish all tasks create a pull request. We would love to interview you 😍!
-
 
 ## Tech Stack
 
