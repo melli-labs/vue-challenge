@@ -6,5 +6,6 @@
     <div class="text-2xl font-semibold grid place-items-center">
       Emilia
     </div>
+    <!-- you probably need a few more of these divs ... -->
   </div>
 </template>

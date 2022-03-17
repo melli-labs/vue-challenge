@@ -14,7 +14,7 @@ const mockData: Note[] = [
   },
   {
     title: 'Tip: useFetch from VueUse 🧩',
-    body: 'Consider using the useFetch utility from the VueUse package for this task. It provides a convenient and reactive wrapper for the Fetch API.',
+    body: 'Consider using the useFetch utility from the VueUse package for this task. It provides a convenient and reactive wrapper for the Fetch API. But of course you are free to install any other fetching library 📥️ or just use the Fetch API directly.',
     author: 'Felix',
     key: 'j3hhw92j',
     readonly: true,
