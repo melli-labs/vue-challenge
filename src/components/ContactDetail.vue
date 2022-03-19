@@ -6,9 +6,9 @@ const emit = defineEmits<{ (name: 'back'): void }>()
 </script>
 
 <template>
-  <div>
-    <header>
-      <button class="flex gap-1" @click="emit('back')">
+  <div bg-emerald-400 grid class="grid-rows-[min-content_min-content_min-content_min-content] justify-items-center">
+    <header class="justify-self-start">
+      <button class="flex gap-1 bg-emerald-200" @click="emit('back')">
         <div class="i-heroicons-outline:chevron-left" />
         Contacts
       </button>
@@ -23,19 +23,19 @@ const emit = defineEmits<{ (name: 'back'): void }>()
       <div>@{{ person.handle }}</div>
     </div>
     <div>
-      <button class="p-4 border">
+      <button class="p-4 border hover:bg-yellow-300">
         <div class="w-6 h-6 i-heroicons-outline:annotation" />
         message
       </button>
-      <button class="p-4 border">
+      <button class="p-4 border hover:bg-yellow-300">
         <div class="w-6 h-6 i-heroicons-outline:phone" />
         call
       </button>
-      <button class="p-4 border">
+      <button class="p-4 border hover:bg-yellow-300">
         <div class="w-6 h-6 i-heroicons-outline:video-camera" />
         video
       </button>
-      <button class="p-4 border">
+      <button class="p-4 border hover:bg-yellow-300">
         <div class="w-6 h-6 i-heroicons-outline:mail" />
         mail
       </button>

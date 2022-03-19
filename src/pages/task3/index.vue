@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
+import { useFetch } from '@vueuse/core'
 import { useFuse } from '@vueuse/integrations/useFuse'
+import { getNotesApi } from '~/notesApi'
 import type { Note } from '~/types'
 
 const mockData: Note[] = [
@@ -32,12 +35,25 @@ const mockData: Note[] = [
   },
 ]
 
-const isFetching = false
+const dataState = ref([])
+const isFetchingState = ref(true)
+
 const input = ref('')
-const { results } = useFuse(input, mockData, {
+const { results } = useFuse(input, dataState, {
   fuseOptions: { keys: ['title', 'body', 'author'] },
   matchAllWhenSearchEmpty: true,
 })
+
+async function getDataApi() {
+  const { isFetching, error, data } = await getNotesApi()
+  dataState.value = data.value
+  isFetchingState.value = isFetching.value
+}
+
+onMounted(
+  getDataApi(),
+)
+
 </script>
 
 <template>
@@ -66,11 +82,11 @@ const { results } = useFuse(input, mockData, {
         <div class="i-heroicons-outline:chevron-right" />Next task
       </router-link>
     </div>
-    <div v-if="isFetching" class="min-h-xs grid place-items-center">
+    <div v-if="isFetchingState" class="min-h-xs grid place-items-center">
       <div class="i-tabler:loader-quarter animate-spin w-6 h-6 text-primary-800" />
     </div>
     <div v-else-if="results.length > 0" class="grid gap-4 md:min-w-screen-sm lg:grid-cols-2">
-      <Note v-for="(result, index) in results" :key="index" :note="result.item" />
+      <Note v-for="(result, index) in results" :key="index" :note="result.item" @changed="getDataApi()" />
     </div>
     <div v-else class="min-h-xs grid place-items-center text-2xl text-primary-700 font-medium tracking-wide">
       No results

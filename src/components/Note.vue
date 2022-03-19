@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { useFetch } from '@vueuse/core'
+import { deleteNotesApi, putNotesApi } from '~/notesApi'
 import type { Note } from '~/types'
 
 const props = defineProps<{
   note: Note
 }>()
+
+const emit = defineEmits(['changed'])
 
 const dropdown = ref(false)
 const dropdownRef = ref(null)
@@ -15,10 +19,37 @@ onClickOutside(dropdownRef, (event) => {
 const edit = ref(false)
 const title = ref(props.note.title)
 const body = ref(props.note.body)
-const isUpdating = false
+const isUpdating = ref(false)
 
-const deleteNote = () => alert('not implemented')
-const updateNote = () => alert('not implemented')
+const deleteNote = async() => {
+  const { isFetching, error, data } = await deleteNotesApi(props.note.key)
+  emit('changed')
+
+  if (error.value)
+    alert(error.value)
+}
+
+const updateNote = async() => {
+  const newData: Note = {
+    title: title.value,
+    body: body.value,
+    author: props.note.author,
+  }
+
+  isUpdating.value = true
+  const { isFetching, error, data } = await putNotesApi(props.note.key, newData)
+  emit('changed')
+  edit.value = false
+
+  if (!error.value) {
+    isUpdating.value = false
+    title.value = ''
+    body.value = ''
+  }
+  else {
+    alert(error.value)
+  }
+}
 </script>
 
 <template>

@@ -1,10 +1,32 @@
 <script setup lang="ts">
+import { useFetch } from '@vueuse/core'
+import { postNotesApi } from '~/notesApi'
+import type { Note } from '~/types'
+
 const title = ref('')
 const author = ref('')
 const body = ref('')
 
 const isSubmitting = ref(false)
-const onSubmit = () => alert('not implemented')
+const onSubmit = async() => {
+  const newData: Note = {
+    title: title.value,
+    author: author.value,
+    body: body.value,
+  }
+  isSubmitting.value = true
+  const { isFetching, error, data } = await postNotesApi(newData)
+
+  if (!error.value) {
+    isSubmitting.value = false
+    title.value = ''
+    author.value = ''
+    body.value = ''
+  }
+  else {
+    alert(error.value)
+  }
+}
 </script>
 
 <template>
