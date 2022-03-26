@@ -3,6 +3,7 @@
 
   <div class="min-h-screen bg-primary-50">
     <div class="container max-w-screen-lg mx-auto px-4 py-12">
+      <Suspense>
       <router-view v-slot="{ Component }">
         <Transition
           mode="out-in"
@@ -12,6 +13,7 @@
           <component :is="Component" class="transition duration-200" />
         </Transition>
       </router-view>
+      </Suspense>
     </div>
   </div>
 </template>
