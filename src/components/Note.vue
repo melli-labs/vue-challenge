@@ -19,7 +19,7 @@ const edit = ref(false)
 const title = ref(props.note.title)
 const body = ref(props.note.body)
 const author = ref(props.note.author)
-const key = props.note.key
+const key = ref(props.note.key)
 const isUpdating = ref(false)
 
 const deleteNote = async() => {
