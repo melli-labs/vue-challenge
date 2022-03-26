@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useFetch } from '@vueuse/core'
 import type { Note } from '~/types'
 
 const props = defineProps<{
   note: Note
 }>()
+
+const emit = defineEmits(['update'])
 
 const dropdown = ref(false)
 const dropdownRef = ref(null)
@@ -15,10 +18,22 @@ onClickOutside(dropdownRef, (event) => {
 const edit = ref(false)
 const title = ref(props.note.title)
 const body = ref(props.note.body)
-const isUpdating = false
+const author = ref(props.note.author)
+const key = props.note.key
+const isUpdating = ref(false)
 
-const deleteNote = () => alert('not implemented')
-const updateNote = () => alert('not implemented')
+const deleteNote = async() => {
+  const { data, error } = await useFetch(`https://emilia-vue-challenge.deta.dev/notes/${key}`).delete().json()
+  if (error.value) alert('Sorry, something went wrong')
+  if (data) emit('update')
+}
+const updateNote = async() => {
+  isUpdating.value = true
+  const { data, error } = await useFetch(`https://emilia-vue-challenge.deta.dev/notes/${key}`).put({ title: title.value, body: body.value, author: author.value }).json()
+  if (error.value) alert('Sorry, something went wrong')
+  if (data.value) emit('update')
+  isUpdating.value = false
+}
 </script>
 
 <template>
