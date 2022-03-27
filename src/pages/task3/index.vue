@@ -9,8 +9,9 @@ const isFetching = ref(false)
 // GET ALL NOTES
 const getAllNotes = async() => {
   isFetching.value = true
-  const { data } = await useFetch('https://emilia-vue-challenge.deta.dev/notes').get().json()
-  notes.value = data.value
+  const res = await useFetch('https://emilia-vue-challenge.deta.dev/notes').get().json()
+  if (res.statusCode.value === 422) alert('Sorry, something went wrong')
+  if (res.statusCode.value === 200) notes.value = res.data.value
   isFetching.value = false
 }
 onMounted(async() => {

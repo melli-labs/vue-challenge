@@ -23,15 +23,15 @@ const key = ref(props.note.key)
 const isUpdating = ref(false)
 
 const deleteNote = async() => {
-  const { data, error } = await useFetch(`https://emilia-vue-challenge.deta.dev/notes/${key}`).delete().json()
-  if (error.value) alert('Sorry, something went wrong')
-  if (data) emit('update')
+  const res = await useFetch(`https://emilia-vue-challenge.deta.dev/notes/${key.value}`).delete().json()
+  if (res.statusCode.value === 422) alert('Sorry, something went wrong')
+  if (res.statusCode.value === 200) emit('update')
 }
 const updateNote = async() => {
   isUpdating.value = true
-  const { data, error } = await useFetch(`https://emilia-vue-challenge.deta.dev/notes/${key}`).put({ title: title.value, body: body.value, author: author.value }).json()
-  if (error.value) alert('Sorry, something went wrong')
-  if (data.value) emit('update')
+  const res = await useFetch(`https://emilia-vue-challenge.deta.dev/notes/${key.value}`).put({ title: title.value, body: body.value, author: author.value }).json()
+  if (res.statusCode.value === 422) alert('Sorry, something went wrong')
+  if (res.statusCode.value) emit('update')
   isUpdating.value = false
 }
 </script>

@@ -9,9 +9,9 @@ const body = ref('')
 const isSubmitting = ref(false)
 const onSubmit = async() => {
   isSubmitting.value = true
-  const { data, error } = await useFetch('https://emilia-vue-challenge.deta.dev/notes').post({ title: title.value, body: body.value, author: author.value }).json()
-  if (error.value) alert('Sorry, something went wrong')
-  if (data.value) router.push('/task3')
+  const res = await useFetch('https://emilia-vue-challenge.deta.dev/notes').post({ title: title.value, body: body.value, author: author.value }).json()
+  if (res.statusCode.value === 422) alert('Sorry, something went wrong')
+  if (res.statusCode.value === 200) router.push('/task3')
   isSubmitting.value = false
 }
 </script>
