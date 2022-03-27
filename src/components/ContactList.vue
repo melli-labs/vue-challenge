@@ -7,7 +7,9 @@ const emit = defineEmits<{ (name: 'select', v: number): void }>()
 
 <template>
   <header>
-    <h1 class="text-6 font-semibold text-center">Contacts</h1>
+    <h1 class="text-6 font-semibold text-center">
+      Contacts
+    </h1>
   </header>
   <ul class="overflow-y-auto">
     <li
@@ -21,8 +23,12 @@ const emit = defineEmits<{ (name: 'select', v: number): void }>()
         class="w-12 h-12 rounded-full border-1 border-gray-600 mr-4"
       >
       <div>
-        <p class="text-4 font-semibold">{{ person.name }}</p>
-        <p class="text-3.5 italic">{{ person.role }}</p>
+        <p class="text-4 font-semibold">
+          {{ person.name }}
+        </p>
+        <p class="text-3.5 italic">
+          {{ person.role }}
+        </p>
       </div>
     </li>
   </ul>
