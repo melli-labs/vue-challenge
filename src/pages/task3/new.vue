@@ -4,7 +4,18 @@ const author = ref('')
 const body = ref('')
 
 const isSubmitting = ref(false)
-const onSubmit = () => alert('not implemented')
+async function onSubmit() {
+  const url = 'https://emilia-vue-challenge.deta.dev/notes'
+  await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify({ title: title.value, author: author.value, body: body.value }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => response.json())
+  return null
+}
 </script>
 
 <template>

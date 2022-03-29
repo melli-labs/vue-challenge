@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useFuse } from '@vueuse/integrations/useFuse'
+import { ref } from 'vue'
 import type { Note } from '~/types'
 
 const mockData: Note[] = [
@@ -32,7 +33,19 @@ const mockData: Note[] = [
   },
 ]
 
-const isFetching = false
+const allNotes = ref(null) as any
+let isFetching = false
+async function getInfo() {
+  isFetching = true
+  const info = await fetch('https://emilia-vue-challenge.deta.dev/notes')
+  const json = await info.json()
+  return allNotes.value = json
+}
+
+onMounted(() => {
+  getInfo()
+})
+
 const input = ref('')
 const { results } = useFuse(input, mockData, {
   fuseOptions: { keys: ['title', 'body', 'author'] },
@@ -52,10 +65,10 @@ const { results } = useFuse(input, mockData, {
       <div
         class="flex-grow bg-white rounded-md flex border-2 border-primary-200 h-12 shadow-sm px-3 gap-3 items-center focus-within:outline-none focus-within:border-primary-500 focus-within:ring-3 focus-within:ring-primary-300"
       >
-        <div class="h-6 text-primary-700 w-6 i-heroicons-outline:search" />
+        <div class="h-6 w-6 i-heroicons-outline:search" />
         <input
           v-model="input"
-          class="flex-grow h-full fill-primary-700 focus:outline-none"
+          class="flex-grow h-full focus:outline-none"
           autofocus
         >
       </div>
@@ -70,7 +83,7 @@ const { results } = useFuse(input, mockData, {
       <div class="i-tabler:loader-quarter animate-spin w-6 h-6 text-primary-800" />
     </div>
     <div v-else-if="results.length > 0" class="grid gap-4 md:min-w-screen-sm lg:grid-cols-2">
-      <Note v-for="(result, index) in results" :key="index" :note="result.item" />
+      <Note v-for="noteEach in allNotes" :key="noteEach.key" :note="noteEach" />
     </div>
     <div v-else class="min-h-xs grid place-items-center text-2xl text-primary-700 font-medium tracking-wide">
       No results

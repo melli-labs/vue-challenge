@@ -1,6 +1,8 @@
 <script setup lang="ts">
-// tip: the `showGlasses` variable should be reactive ...
-let showGlasses = false
+import { ref } from 'vue'
+
+let showGlasses = ref(0)
+
 </script>
 
 <template>

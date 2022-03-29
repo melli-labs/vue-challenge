@@ -15,10 +15,29 @@ onClickOutside(dropdownRef, (event) => {
 const edit = ref(false)
 const title = ref(props.note.title)
 const body = ref(props.note.body)
+const author = ref(props.note.author)
 const isUpdating = false
 
-const deleteNote = () => alert('not implemented')
-const updateNote = () => alert('not implemented')
+async function deleteNote() {
+  const response = await fetch(`https://emilia-vue-challenge.deta.dev/notes/${props.note.key}`, {
+    method: 'DELETE',
+  })
+  return response
+}
+async function updateNote() {
+  await fetch(`https://emilia-vue-challenge.deta.dev/notes/${props.note.key}`, {
+    method: 'PUT',
+    body: JSON.stringify({ title: title.value, author: author.value, body: body.value }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+  })
+    .then(response => response.json())
+  edit.value = false
+  return null
+}
+
 </script>
 
 <template>
