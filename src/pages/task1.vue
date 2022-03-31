@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 // tip: the `showGlasses` variable should be reactive ...
-let showGlasses = false
+const showGlasses = ref(false)
 </script>
 
 <template>
