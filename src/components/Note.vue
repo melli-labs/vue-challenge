@@ -25,14 +25,12 @@ const isUpdating = ref(false);
 const { notes, error, fetchData, isFetching, baseUrl, refetch } = useNotes();
 
 const deleteNote = (e) => {
-  console.log("deleting");
   e.preventDefault();
   const id = key.value;
   const deleteOptions = ref({
     method: "DELETE",
     headers: { Accept: "application/json", "Content-type": "application/json" },
   });
-  console.log("deleteOptions");
   const url = `${baseUrl.value}/${id}`;
   fetchData(url, deleteOptions.value, refetch);
 };
