@@ -1,10 +1,25 @@
 <script setup lang="ts">
+import noteApi from '~/api'
+
 const title = ref('')
 const author = ref('')
 const body = ref('')
 
 const isSubmitting = ref(false)
-const onSubmit = () => alert('not implemented')
+const onSubmit = () => {
+  if (title.value && author.value && body.value) {
+    isSubmitting.value = true
+    noteApi.post('/notes', { title: title.value, author: author.value, body: body.value }).then(() => {
+      alert('Success')
+      isSubmitting.value = false
+    }).catch(() => {
+      alert('An error occured')
+      isSubmitting.value = false
+    })
+  } else {
+    alert('Please fill the empty fields')
+  }
+}
 </script>
 
 <template>
@@ -18,21 +33,21 @@ const onSubmit = () => alert('not implemented')
           <label for="title" class="">
             Title
           </label>
-          <input id="title" v-model="title" type="text" name="title" autocomplete="title" class="input">
+          <input id="title" v-model.trim="title" type="text" name="title" autocomplete="title" class="input">
         </div>
 
         <div class="grid gap-1">
           <label for="author" class="">
             Author
           </label>
-          <input id="author" v-model="author" type="text" name="author" autocomplete="author" class="input">
+          <input id="author" v-model.trim="author" type="text" name="author" autocomplete="author" class="input">
         </div>
 
         <div class="grid gap-1">
           <label for="body" class="">
             Body
           </label>
-          <textarea id="body" v-model="body" name="body" rows="3" class="min-h-40 p-4 shadow-sm block w-full input" />
+          <textarea id="body" v-model.trim="body" name="body" rows="3" class="min-h-40 p-4 shadow-sm block w-full input" />
         </div>
       </div>
 

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import type { Note } from '~/types'
+import noteApi from '~/api'
+
+const emit = defineEmits(['getNotes'])
 
 const props = defineProps<{
   note: Note
@@ -15,10 +18,35 @@ onClickOutside(dropdownRef, (event) => {
 const edit = ref(false)
 const title = ref(props.note.title)
 const body = ref(props.note.body)
-const isUpdating = false
+const author = ref(props.note.author)
+const key = ref(props.note.key)
+const isUpdating = ref(false)
 
-const deleteNote = () => alert('not implemented')
-const updateNote = () => alert('not implemented')
+const deleteNote = () => {
+  noteApi.delete(`/notes/${key.value}`).then(() => {
+    alert('Note deleted!')
+    emit('getNotes')
+  }).catch(() => {
+    alert('An error occured')
+  })
+}
+
+const updateNote = () => {
+  if (title.value && body.value) {
+    isUpdating.value = true
+    noteApi.put(`/notes/${key.value}`, { title: title.value, body: body.value, author: author.value }).then(() => {
+      alert('Note edited!')
+      isUpdating.value = false
+      edit.value = false
+      emit('getNotes')
+    }).catch(() => {
+      alert('An error occured')
+      isUpdating.value = false
+    })
+  } else {
+    alert('Please fill the empty fields')
+  }
+}
 </script>
 
 <template>
@@ -76,11 +104,11 @@ const updateNote = () => alert('not implemented')
       </div>
     </header>
     <main class="p-6 text-gray-800 grid gap-2">
-      <input v-if="edit" v-model="title" class="input">
+      <input v-if="edit" v-model.trim="title" class="input">
       <h1 v-else class="font-medium text-lg">
         {{ note.title }}
       </h1>
-      <textarea v-if="edit" v-model="body" name="body" rows="3" class="min-h-40 p-4 input" />
+      <textarea v-if="edit" v-model.trim="body" name="body" rows="3" class="min-h-40 p-4 input" />
       <p v-else>
         {{ note.body }}
       </p>
