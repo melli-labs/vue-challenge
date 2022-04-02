@@ -1,50 +1,20 @@
 <script setup lang="ts">
 import { useFuse } from "@vueuse/integrations/useFuse";
-import { useFetch } from "@vueuse/core";
 import { ref } from "vue";
 
 import useNotes from "../../modules/notes.js";
 import type { Note } from "~/types";
 
-const mockData: Note[] = [
-  {
-    title: "One more thing",
-    body: "There are some notes which are readonly 🔒️. These notes cannot be edited or deleted. But for the other notes we should be able to use the dropdown to edit ✍️ or delete ❌ them.",
-    author: "Emilia",
-    key: "f24jv9ss",
-    readonly: true,
-    createdAt: "2022-01-31 09:01:33",
-    updatedAt: "2022-01-31 09:01:33",
-  },
-  {
-    title: "Tip: useFetch from VueUse 🧩",
-    body: "Consider using the useFetch utility from the VueUse package for this task. It provides a convenient and reactive wrapper for the Fetch API. But of course you are free to install any other fetching library 📥️ or just use the Fetch API directly.",
-    author: "Felix",
-    key: "j3hhw92j",
-    readonly: true,
-    createdAt: "2022-01-24 12:12:45",
-    updatedAt: "2022-01-24 12:12:45",
-  },
-  {
-    title: "📝 TODO",
-    body: "Hire a frontend developer.",
-    author: "Hans",
-    readonly: false,
-    key: "jfpnzy2nu",
-    createdAt: "2022-01-27 16:52:20",
-    updatedAt: "2022-01-31 16:52:20",
-  },
-];
-
 // api call
 const { notes, error, fetchData, isFetching, baseUrl, refetch } = useNotes();
+// const notes = ref([]);
+
 const url = baseUrl.value;
 const options = {
   method: "GET",
   headers: { Accept: "application/json", "Content-type": "application/json" },
 };
-fetchData(url, options, refetch);
-
+fetchData(url, options, refetch, notes);
 // search filter function
 const input = ref("");
 const { results } = useFuse(input, notes, {

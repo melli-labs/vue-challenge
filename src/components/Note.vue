@@ -2,8 +2,6 @@
 import useNotes from "../modules/notes";
 import type { Note } from "~/types";
 
-import { watch } from "vue";
-
 const props = defineProps<{
   note: Note;
 }>();
@@ -23,19 +21,18 @@ const key = ref(props.note.key);
 const isUpdating = ref(false);
 
 const { notes, error, fetchData, isFetching, baseUrl, refetch } = useNotes();
-
-const deleteNote = (e) => {
+const deleteNote = async (e) => {
   e.preventDefault();
   const id = key.value;
-  const deleteOptions = ref({
+  const deleteOptions = {
     method: "DELETE",
     headers: { Accept: "application/json", "Content-type": "application/json" },
-  });
+  };
   const url = `${baseUrl.value}/${id}`;
-  fetchData(url, deleteOptions.value, refetch);
+  fetchData(url, deleteOptions, refetch, notes);
 };
 
-const updateNote = (e) => {
+const updateNote = async (e) => {
   e.preventDefault();
   const data = {
     title: title.value,
@@ -50,8 +47,7 @@ const updateNote = (e) => {
   };
   const url = `${baseUrl.value}/${id}`;
   if ((title, body)) {
-    fetchData(url, updateOptions, refetch);
-    isUpdating.value = true;
+    const response = await fetchData(url, updateOptions, refetch);
   }
 };
 </script>

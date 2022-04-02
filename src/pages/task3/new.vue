@@ -32,9 +32,10 @@ const onSubmit = async (e) => {
   const { notes, error, fetchData, isFetching, baseUrl, refetch } = useNotes();
   const url = baseUrl.value;
   if ((title, author, body)) {
-    fetchData(url, postOptions, refetch);
+    await fetchData(url, postOptions, refetch);
     resetInput();
     isSubmitting.value = true;
+    history.back();
   }
 };
 </script>

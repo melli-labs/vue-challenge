@@ -13,7 +13,9 @@ const emit = defineEmits<{ (name: "select", v: number): void }>();
       Contacts
     </h1>
   </header>
-  <ul class="overflow-y-auto border-primary-400 grid gap-5 p-6 grid-cols-2">
+  <ul
+    class="overflow-y-auto border-primary-400 grid gap-5 p-4 py-6 grid-cols-2"
+  >
     <li
       v-for="(person, index) in people"
       :key="index"

@@ -8,7 +8,7 @@ const emit = defineEmits<{ (name: "back"): void }>();
 <template>
   <div class="flex h-full flex-1 flex-col justify-between items-center">
     <header
-      class="z-10 h-10 w-full bg-primary flex justify-content items-center pl-2"
+      class="z-10 h-10 w-full bg-primary flex justify-content items-center pl-2 shadow-lg"
     >
       <button class="flex gap-1 items-center color-white" @click="emit('back')">
         <div class="i-heroicons-outline:chevron-left" />
