@@ -4,6 +4,12 @@ import { useFetch } from "@vueuse/core";
 export default function useNotes() {
   const error = ref(null);
   const notes = ref([]);
+  // const useNotes() {
+  //   // super complicated cart logic
+  //   return {
+  //     notes: computed(() => notes.value),
+  //   };
+  // }
   const isFetching = ref(true);
   const baseUrl = ref(`https://emilia-vue-challenge.deta.dev/notes`);
   const refetch = { refetch: true };

@@ -49,6 +49,8 @@ const updateNote = async (e) => {
   if ((title, body)) {
     const response = await fetchData(url, updateOptions, refetch);
   }
+  // implement state change  - trying to figure out exactly how composition api works with refs and computed data.
+  // note to self - https://vueschool.io/articles/vuejs-tutorials/state-management-with-composition-api/
 };
 </script>
 
