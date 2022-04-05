@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // tip: the `showGlasses` variable should be reactive ...
-let showGlasses = false
+//let showGlasses = false
+const showGlasses = ref(false);
 </script>
 
 <template>
