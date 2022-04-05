@@ -1,6 +1,14 @@
-<script setup lang="ts">
-// tip: the `showGlasses` variable should be reactive ...
-let showGlasses = false
+<script lang="ts">
+import { ref } from "vue";
+
+export default {
+  name: "App",
+  setup: () => {
+    let showGlasses = ref(true);
+    console.log(showGlasses)
+    return { showGlasses };
+  },
+}
 </script>
 
 <template>
@@ -29,3 +37,5 @@ let showGlasses = false
     </Transition>
   </div>
 </template>
+
+

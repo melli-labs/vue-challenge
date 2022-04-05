@@ -2,8 +2,9 @@
 import type { Note } from '~/types'
 
 const props = defineProps<{
-  note: Note
+  note: Note;
 }>()
+
 
 const dropdown = ref(false)
 const dropdownRef = ref(null)
@@ -15,10 +16,58 @@ onClickOutside(dropdownRef, (event) => {
 const edit = ref(false)
 const title = ref(props.note.title)
 const body = ref(props.note.body)
-const isUpdating = false
+const author = ref(props.note.author)
+const isUpdating = ref(false)
 
-const deleteNote = () => alert('not implemented')
-const updateNote = () => alert('not implemented')
+const deleteNote = async(key) =>  {
+  console.log(key)
+  try {
+    var res = await fetch('https://emilia-vue-challenge.deta.dev/notes/'+key, {
+    method: 'DELETE',
+    mode: "cors",
+    body: JSON.stringify({
+      "title": title.value,
+      "body": body.value,
+      "author": author.value,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      "x-access-token": "token-value",
+    }
+  })
+    console.log("res: ", res)
+    state.data = await res.json()
+    isUpdating.value = false
+    edit.value = false
+  } catch (err) {
+    console.error(err)
+  }
+};
+const updateNote = async(key) =>  {
+  try {
+    var res = await fetch('https://emilia-vue-challenge.deta.dev/notes/'+key, {
+    method: 'PUT',
+    mode: "cors",
+    body: JSON.stringify({
+      "title": title.value,
+      "body": body.value,
+      "author": author.value,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      "x-access-token": "token-value",
+    }
+  })
+    console.log("res: ", res)
+    state.data = await res.json()
+    isUpdating.value = false
+    edit.value = false
+  } catch (err) {
+    console.error(err)
+  }
+};
+const state = reactive({ data: [] })
+
 </script>
 
 <template>
@@ -66,7 +115,7 @@ const updateNote = () => alert('not implemented')
             </button>
             <button
               class="px-6 py-2 text-danger-600 hover:bg-danger-50 flex items-center gap-1"
-              @click="deleteNote"
+              @click="deleteNote(note.key)"
             >
               <span class="i-heroicons-outline:x w-6 h-6 opacity-65" />
               Delete
@@ -88,7 +137,7 @@ const updateNote = () => alert('not implemented')
         <button
           class="bg-primary-50 font-medium rounded-md flex border-2 h-12 shadow-sm px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"
           :class="isUpdating ? 'text-primary-500 border-primary-100' : 'text-primary-800  border-primary-200'"
-          @click="updateNote"
+          @click="updateNote(note.key)"
         >
           {{ isUpdating ? 'Updating Note ...': 'Update Note' }}
         </button>

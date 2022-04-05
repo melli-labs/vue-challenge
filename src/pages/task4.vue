@@ -67,8 +67,8 @@ const selectedPerson = ref<Person | null>(null)
           :person="selectedPerson"
           @back="selectedPerson = null"
         />
-        <ContactList v-else :people="people" @select="(i) => selectedPerson = people[i]" />
-        <NavBar class="mt-auto" />
+        <ContactList class="" v-else :people="people" @select="(i) => selectedPerson = people[i]" />
+        <NavBar class="border-2 border-b-white  border-l-white border-r-white border-t-gray-200  mt-auto" />
       </div>
     </Phone>
   </div>
