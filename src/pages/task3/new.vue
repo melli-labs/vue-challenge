@@ -4,13 +4,32 @@ const author = ref('')
 const body = ref('')
 
 const isSubmitting = ref(false)
-const onSubmit = () => alert('not implemented')
+//const onSubmit = () => alert('not implemented')
+
+import axios from 'axios'
+const emiliaApi = axios.create({
+})
+
+const onSubmit = () => {
+ 
+    isSubmitting.value = true
+    emiliaApi.post('https://emilia-vue-challenge.deta.dev/notes', { title: title.value, author: author.value, body: body.value }).then(() => {
+      alert('add done')
+    }).catch(() => {
+    })
+  } 
+console.log(onSubmit)
+
+
+
+
+
 </script>
 
 <template>
   <div class="rounded-md bg-white border-2 border-primary-200 shadow-sm overflow-hidden">
     <h1 class="p-6 text-3xl font-medium text-primary-700 text-center">
-      New Note 📝
+      New Note ًں“‌
     </h1>
     <form @submit.prevent="onSubmit">
       <div class="p-6 grid gap-4 text-gray-800">
