@@ -1,5 +1,6 @@
 <template>
-  <nav>
+  <!--<nav>-->
+    <nav class="flex py items-center justify-around">
     <div class="i-heroicons-outline:home w-8 h-8" />
     <div class="i-heroicons-outline:phone w-8 h-8" />
     <div class="i-heroicons-outline:calendar w-8 h-8" />
