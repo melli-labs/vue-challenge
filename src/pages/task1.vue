@@ -1,6 +1,5 @@
 <script setup lang="ts">
-// tip: the `showGlasses` variable should be reactive ...
-let showGlasses = false
+const showGlasses = ref(false)
 </script>
 
 <template>
@@ -13,7 +12,7 @@ let showGlasses = false
     <Toggle v-model="showGlasses" />
     <div
       class="bg-white max-w-sm shadow-lg py-48 px-8 transition-transform"
-      :class="{'scale-50': !showGlasses}"
+      :class="{ 'scale-50': !showGlasses }"
     >
       This text is super tiny and I can't read it!
     </div>

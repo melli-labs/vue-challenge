@@ -5,6 +5,8 @@ const props = defineProps<{
   note: Note
 }>()
 
+const emit = defineEmits(['note-modified'])
+
 const dropdown = ref(false)
 const dropdownRef = ref(null)
 onClickOutside(dropdownRef, (event) => {
@@ -15,15 +17,51 @@ onClickOutside(dropdownRef, (event) => {
 const edit = ref(false)
 const title = ref(props.note.title)
 const body = ref(props.note.body)
-const isUpdating = false
+const isUpdating = ref(false)
 
-const deleteNote = () => alert('not implemented')
-const updateNote = () => alert('not implemented')
+const url = `https://emilia-vue-challenge.deta.dev/notes/${props.note.key}`
+
+const deleteNote = () => {
+  const { error, onFetchError, onFetchResponse } = useFetch(url).delete()
+
+  onFetchError(() => {
+    alert(`An error has occurred \n ${error.value}`)
+    console.error(error)
+  })
+
+  onFetchResponse(() => {
+    emit('note-modified')
+  })
+}
+
+const updateNote = () => {
+  isUpdating.value = true
+
+  const { error, onFetchError, onFetchResponse } = useFetch(url).put({
+    title: title.value,
+    author: props.note.author,
+    body: body.value,
+  })
+
+  onFetchError(() => {
+    alert(`An error has occurred \n ${error.value}`)
+    console.error(error)
+  })
+
+  onFetchResponse(() => {
+    isUpdating.value = false
+    emit('note-modified')
+  })
+}
 </script>
 
 <template>
-  <div class="rounded-md bg-white border-2 border-primary-200 shadow-sm overflow-hidden">
-    <header class="px-3 py-2 flex bg-primary-100 gap-2 items-center text-sm text-primary-800">
+  <div
+    class="rounded-md bg-white border-2 border-primary-200 shadow-sm overflow-hidden"
+  >
+    <header
+      class="px-3 py-2 flex bg-primary-100 gap-2 items-center text-sm text-primary-800"
+    >
       <div
         class="h-10 w-10 uppercase rounded-full grid place-items-center font-bold bg-primary-50"
       >
@@ -76,21 +114,31 @@ const updateNote = () => alert('not implemented')
       </div>
     </header>
     <main class="p-6 text-gray-800 grid gap-2">
-      <input v-if="edit" v-model="title" class="input">
+      <input v-if="edit" v-model="title" class="input" />
       <h1 v-else class="font-medium text-lg">
         {{ note.title }}
       </h1>
-      <textarea v-if="edit" v-model="body" name="body" rows="3" class="min-h-40 p-4 input" />
+      <textarea
+        v-if="edit"
+        v-model="body"
+        name="body"
+        rows="3"
+        class="min-h-40 p-4 input"
+      />
       <p v-else>
         {{ note.body }}
       </p>
       <div v-if="edit" class="flex flex-row-reverse">
         <button
           class="bg-primary-50 font-medium rounded-md flex border-2 h-12 shadow-sm px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"
-          :class="isUpdating ? 'text-primary-500 border-primary-100' : 'text-primary-800  border-primary-200'"
+          :class="
+            isUpdating
+              ? 'text-primary-500 border-primary-100'
+              : 'text-primary-800  border-primary-200'
+          "
           @click="updateNote"
         >
-          {{ isUpdating ? 'Updating Note ...': 'Update Note' }}
+          {{ isUpdating ? 'Updating Note ...' : 'Update Note' }}
         </button>
         <button
           class="text-primary-800 font-medium rounded-md flex h-12 px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"
@@ -120,6 +168,6 @@ const updateNote = () => alert('not implemented')
 .dropdown-menu::after {
   position: absolute;
   display: inline-block;
-  content: "";
+  content: '';
 }
 </style>
