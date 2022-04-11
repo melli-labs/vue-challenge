@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="grid grid-cols-5 justify-items-center">
     <div class="i-heroicons-outline:home w-8 h-8" />
     <div class="i-heroicons-outline:phone w-8 h-8" />
     <div class="i-heroicons-outline:calendar w-8 h-8" />
