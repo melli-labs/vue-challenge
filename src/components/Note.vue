@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import type { Note } from '~/types'
+import { ApiProviderService } from "~/ApiProviderService";
+
+const apiService = new ApiProviderService();
 
 const props = defineProps<{
   note: Note
@@ -15,10 +18,39 @@ onClickOutside(dropdownRef, (event) => {
 const edit = ref(false)
 const title = ref(props.note.title)
 const body = ref(props.note.body)
-const isUpdating = false
+const isUpdating = ref(false);
 
-const deleteNote = () => alert('not implemented')
-const updateNote = () => alert('not implemented')
+const deleteNote = () => {
+  apiService.deleteNote(props.note.key)
+    .then((response: ResponseData) => {
+      alert("Note deleted successfully");
+      window.location = "/task3";
+    })
+    .catch((e: any) => {
+      alert("An error has occurred!!");
+      console.error(e);
+    });
+}
+const updateNote = () => {
+
+  let data = {
+    title: title.value,
+    author: props.note.author,
+    body: body.value
+  }
+
+  apiService.updateNote(props.note.key, data)
+    .then((response: ResponseData) => {
+      isUpdating.value = false;
+      alert("Note updated successfully");
+      window.location = "/task3";
+    })
+    .catch((e: any) => {
+      alert("An error has occurred!!");
+      console.error(e);
+      isUpdating.value = false;
+    });
+}
 </script>
 
 <template>

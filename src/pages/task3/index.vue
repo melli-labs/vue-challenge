@@ -1,43 +1,39 @@
 <script setup lang="ts">
 import { useFuse } from '@vueuse/integrations/useFuse'
 import type { Note } from '~/types'
+import { ApiProviderService } from "~/ApiProviderService";
+import ResponseData from "@/types/ResponseData";
 
-const mockData: Note[] = [
-  {
-    title: 'One more thing',
-    body: 'There are some notes which are readonly 🔒️. These notes cannot be edited or deleted. But for the other notes we should be able to use the dropdown to edit ✍️ or delete ❌ them.',
-    author: 'Emilia',
-    key: 'f24jv9ss',
-    readonly: true,
-    createdAt: '2022-01-31 09:01:33',
-    updatedAt: '2022-01-31 09:01:33',
-  },
-  {
-    title: 'Tip: useFetch from VueUse 🧩',
-    body: 'Consider using the useFetch utility from the VueUse package for this task. It provides a convenient and reactive wrapper for the Fetch API. But of course you are free to install any other fetching library 📥️ or just use the Fetch API directly.',
-    author: 'Felix',
-    key: 'j3hhw92j',
-    readonly: true,
-    createdAt: '2022-01-24 12:12:45',
-    updatedAt: '2022-01-24 12:12:45',
-  },
-  {
-    title: '📝 TODO',
-    body: 'Hire a frontend developer.',
-    author: 'Hans',
-    readonly: false,
-    key: 'jfpnzy2nu',
-    createdAt: '2022-01-27 16:52:20',
-    updatedAt: '2022-01-31 16:52:20',
-  },
-]
+const apiService = new ApiProviderService();
 
-const isFetching = false
+const isFetching = ref(true);
 const input = ref('')
-const { results } = useFuse(input, mockData, {
+const listNotes: Ref<Note[]> = ref([])
+
+const getAllNotes = async() => {
+  apiService.getAllNotes()
+    .then((response: ResponseData) => {
+      listNotes.value = response.data;
+      isFetching.value = false;
+      results.value = useFuse(input, listNotes, {
+        fuseOptions: { keys: ['title', 'body', 'author'] },
+        matchAllWhenSearchEmpty: true,
+      })
+    })
+   .catch((e: Error) => {
+      console.error(e);
+      isFetching.value = false;
+    });
+}
+
+const { results } = useFuse(input, listNotes, {
   fuseOptions: { keys: ['title', 'body', 'author'] },
   matchAllWhenSearchEmpty: true,
 })
+
+onMounted(() => {
+  getAllNotes()
+});
 </script>
 
 <template>

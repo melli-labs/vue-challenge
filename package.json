@@ -11,7 +11,8 @@
     "@vueuse/integrations": "^7.7.1",
     "fuse.js": "^6.5.3",
     "vue": "^3.2.31",
-    "vue-router": "^4.0.14"
+    "vue-router": "^4.0.14",
+    "axios": "^0.26.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.16.1",

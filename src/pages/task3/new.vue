@@ -1,10 +1,37 @@
 <script setup lang="ts">
+import { ApiProviderService } from "~/ApiProviderService";
+
+const apiService = new ApiProviderService();
+
 const title = ref('')
 const author = ref('')
 const body = ref('')
 
 const isSubmitting = ref(false)
-const onSubmit = () => alert('not implemented')
+const onSubmit = () => {
+  if (title.value == "" || author.value == "" || body.value == "") {
+    alert("Please complete the form");
+    return;
+  }
+  let data = {
+    title: title.value,
+    author: author.value,
+    body: body.value
+  }
+  
+  isSubmitting.value = true;
+  apiService.createNote(data)
+    .then((response: ResponseData) => {
+      isSubmitting.value = false;
+      alert("Note saved successfully");
+      window.location = "/task3";
+    })
+    .catch((e: any) => {
+      alert("An error has occurred!!");
+      console.error(e);
+      isSubmitting.value = false;
+    });
+}
 </script>
 
 <template>
