@@ -1,6 +1,6 @@
 <template>
   <div class="w-375px h-812px box-content bg-white border-12 border-primary-200 rounded-10 grid phone-grid overflow-hidden">
-    <div class="h-44px px-8 flex items-center justify-between text-primary-800">
+    <div class="h-44px px-8 bg-primary-100 flex items-center justify-between text-primary-800">
       <div class="font-semibold">
         9:41
       </div>
@@ -13,9 +13,11 @@
     <div>
       <slot />
     </div>
-    <svg width="375" height="34" viewBox="0 0 375 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="120" y="21" width="134" height="5" rx="2.5" class="fill-primary-600" />
-    </svg>
+    <div class="bg-primary-100">
+      <svg width="375" height="34" viewBox="0 0 375 34" fill="bg-primary" xmlns="http://www.w3.org/2000/svg">
+        <rect x="120" y="21" width="134" height="5" rx="2.5" class="fill-primary-600" />
+      </svg>
+    </div>
   </div>
 </template>
 

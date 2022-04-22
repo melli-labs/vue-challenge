@@ -61,7 +61,7 @@ const selectedPerson = ref<Person | null>(null)
 
   <div class="min-h-screen p-4 bg-primary-50 grid place-items-center">
     <Phone>
-      <div class="h-full grid">
+      <div class="h-full grid bg-primary-100">
         <ContactDetail
           v-if="selectedPerson"
           :person="selectedPerson"

@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { Note } from '~/types'
 
+const API_URL = 'https://emilia-vue-challenge.deta.dev/notes'
+
 const props = defineProps<{
   note: Note
 }>()
+const emit = defineEmits<{ (name: 'delete-key', key: string): void }>()
 
 const dropdown = ref(false)
 const dropdownRef = ref(null)
@@ -15,10 +18,22 @@ onClickOutside(dropdownRef, (event) => {
 const edit = ref(false)
 const title = ref(props.note.title)
 const body = ref(props.note.body)
-const isUpdating = false
+const author = ref(props.note.author)
+const key = ref(props.note.key)
+const isUpdating = ref(false)
 
-const deleteNote = () => alert('not implemented')
-const updateNote = () => alert('not implemented')
+const deleteNote = async() => {
+  isUpdating.value = true
+  const resp = await fetch(`${API_URL}/${key.value}`, { method: 'DELETE' })
+  if (resp.status === 200) emit('delete-key', key.value)
+  isUpdating.value = false
+}
+const updateNote = async() => {
+  isUpdating.value = true
+  const updatedNote = { title: title.value, body: body.value, author: author.value }
+  const resp = await fetch(`${API_URL}/${key.value}`, { method: 'PUT', body: JSON.stringify(updatedNote), headers: { 'Content-Type': 'application/json' } })
+  isUpdating.value = false
+}
 </script>
 
 <template>
@@ -30,7 +45,7 @@ const updateNote = () => alert('not implemented')
         {{ note.author.slice(0, 2) }}
       </div>
       <div>
-        <span>@{{ note.author }}</span>
+        <span>@{{ author }}</span>
         <span class="opacity-65">{{ ' commented on ' }}</span>
         <span>{{ new Date(note.createdAt).toDateString() }}</span>
         <span v-if="note.updatedAt !== note.createdAt">· edited</span>
@@ -78,11 +93,11 @@ const updateNote = () => alert('not implemented')
     <main class="p-6 text-gray-800 grid gap-2">
       <input v-if="edit" v-model="title" class="input">
       <h1 v-else class="font-medium text-lg">
-        {{ note.title }}
+        {{ title }}
       </h1>
       <textarea v-if="edit" v-model="body" name="body" rows="3" class="min-h-40 p-4 input" />
       <p v-else>
-        {{ note.body }}
+        {{ body }}
       </p>
       <div v-if="edit" class="flex flex-row-reverse">
         <button

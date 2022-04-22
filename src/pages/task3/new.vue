@@ -1,14 +1,27 @@
 <script setup lang="ts">
+const API_URL = 'https://emilia-vue-challenge.deta.dev/notes'
 const title = ref('')
 const author = ref('')
 const body = ref('')
 
 const isSubmitting = ref(false)
-const onSubmit = () => alert('not implemented')
+const success = ref(false)
+const onSubmit = async() => {
+  isSubmitting.value = true
+  const newNote = { title: title.value, body: body.value, author: author.value }
+  const resp = await fetch(`${API_URL}`, { method: 'POST', body: JSON.stringify(newNote), headers: { 'Content-Type': 'application/json' } })
+  if (resp.status === 200) success.value = true
+  isSubmitting.value = false
+}
 </script>
 
 <template>
   <div class="rounded-md bg-white border-2 border-primary-200 shadow-sm overflow-hidden">
+    <div v-if="success" class=" grid gap-6 text-center bg-primary-100">
+      <h2 class="text-4xl font-semibold text-primary-800">
+        Note successfully created!
+      </h2>
+    </div>
     <h1 class="p-6 text-3xl font-medium text-primary-700 text-center">
       New Note 📝
     </h1>
