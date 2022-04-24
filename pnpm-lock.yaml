@@ -9,6 +9,7 @@ specifiers:
   '@vitejs/plugin-vue': ^2.2.4
   '@vueuse/core': ^7.7.1
   '@vueuse/integrations': ^7.7.1
+  axios: ^0.26.1
   eslint: ^8.11.0
   fuse.js: ^6.5.3
   typescript: ^4.6.2
@@ -18,13 +19,16 @@ specifiers:
   vite: ^2.8.6
   vite-plugin-pages: ^0.20.2
   vue: ^3.2.31
+  vue-axios: ^3.4.1
   vue-router: ^4.0.14
 
 dependencies:
   '@vueuse/core': 7.7.1_vue@3.2.31
-  '@vueuse/integrations': 7.7.1_fuse.js@6.5.3+vue@3.2.31
+  '@vueuse/integrations': 7.7.1_cd8e7832548e0e8ff14516533906fc5e
+  axios: 0.26.1
   fuse.js: 6.5.3
   vue: 3.2.31
+  vue-axios: 3.4.1_axios@0.26.1+vue@3.2.31
   vue-router: 4.0.14_vue@3.2.31
 
 devDependencies:
@@ -632,7 +636,7 @@ packages:
       vue-demi: 0.12.4_vue@3.2.31
     dev: false
 
-  /@vueuse/integrations/7.7.1_fuse.js@6.5.3+vue@3.2.31:
+  /@vueuse/integrations/7.7.1_cd8e7832548e0e8ff14516533906fc5e:
     resolution: {integrity: sha512-qQ/+sxxICYKQZr+CmqfPFJXBCSTbbLAnE3fHE8s8kU/ohy+GcIZFVADM/JjbVqXsJJPgL/TnkCxPs0RVLsHbkw==}
     peerDependencies:
       axios: '*'
@@ -663,6 +667,7 @@ packages:
     dependencies:
       '@vueuse/core': 7.7.1_vue@3.2.31
       '@vueuse/shared': 7.7.1_vue@3.2.31
+      axios: 0.26.1
       fuse.js: 6.5.3
       vue-demi: 0.12.4_vue@3.2.31
     transitivePeerDependencies:
@@ -785,6 +790,14 @@ packages:
     transitivePeerDependencies:
       - debug
     dev: true
+
+  /axios/0.26.1:
+    resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
+    dependencies:
+      follow-redirects: 1.14.9
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -1738,7 +1751,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: true
 
   /foreach/2.0.5:
     resolution: {integrity: sha1-C+4AUBiusmDQo6865ljdATbsG5k=}
@@ -3052,6 +3064,16 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /vue-axios/3.4.1_axios@0.26.1+vue@3.2.31:
+    resolution: {integrity: sha512-8YZYUOQrBEJktxoQtrM4rr2LfVcDaWfJqv8MqtLlgLlkuBvCYKFSZSo6AXQ4YcCzdgccDqstmuaEh68lcH9xWA==}
+    peerDependencies:
+      axios: '>= 0.20.0'
+      vue: ^3.0.0 || ^2.0.0
+    dependencies:
+      axios: 0.26.1
+      vue: 3.2.31
+    dev: false
 
   /vue-demi/0.12.4_vue@3.2.31:
     resolution: {integrity: sha512-ztPDkFt0TSUdoq1ZI6oD730vgztBkiByhUW7L1cOTebiSBqSYfSQgnhYakYigBkyAybqCTH7h44yZuDJf2xILQ==}
