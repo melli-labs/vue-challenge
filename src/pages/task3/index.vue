@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { useFuse } from '@vueuse/integrations/useFuse'
 import type { Note } from '~/types'
+import { ref, onMounted } from 'vue'
+
+
+
 
 const mockData: Note[] = [
   {
@@ -32,19 +36,59 @@ const mockData: Note[] = [
   },
 ]
 
-const isFetching = false
+
+let  isFetching = false;
 const input = ref('')
-const { results } = useFuse(input, mockData, {
+
+let dynamicdata: Note[] = new Array();
+
+
+onMounted(async () => {  
+     await fetch("https://emilia-vue-challenge.deta.dev/notes")
+    .then(response => response.json())
+    .then(data => {
+     for (const result of data) {
+     let note: Note =  {
+    title: result.title,
+    body: result.body,
+    author: result.author,
+    key: result.key,
+    readonly: result.readonly,
+    createdAt: result.createdAt,
+    updatedAt: result.updatedAt,
+  };
+    dynamicdata.push(note);
+    }
+    input.value = data.json;
+  })
+  .catch(console.error);
+        }); 
+
+
+        
+
+
+  const {results }  = useFuse(input, dynamicdata, {
   fuseOptions: { keys: ['title', 'body', 'author'] },
   matchAllWhenSearchEmpty: true,
 })
+
+
+
+
+const redirectNote = () => {
+   window.location.href = "/task3/new";
+}
+
 </script>
 
 <template>
+<!-- <Suspense> -->
   <div class="grid gap-6">
     <div class="flex gap-4 flex-col sm:flex-row">
       <router-link
-        to="/task3/new"
+        to= "/task3/new"
+        @click="redirectNote()"
         class="bg-primary-100 text-primary-800 font-medium rounded-md border-2 border-primary-200 h-12 shadow-sm px-3 flex gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"
       >
         <div class="i-heroicons-outline:plus" />New Note
@@ -76,4 +120,6 @@ const { results } = useFuse(input, mockData, {
       No results
     </div>
   </div>
+  <!-- </Suspense> -->
+
 </template>

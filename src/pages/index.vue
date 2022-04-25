@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const texts = [
-  'Hi, I am Emilia!',
+  'Hi, I am Emilia !',
   'Thank you for participating in our challenge 👍️',
   'Click below to start the challenge 🚀',
 ]

@@ -1,10 +1,42 @@
 <script setup lang="ts">
+import type { Note } from '~/types'
+
 const title = ref('')
 const author = ref('')
 const body = ref('')
 
+const asyncPostCall = async (note:Note) => {
+            try {
+                const response = await fetch('https://emilia-vue-challenge.deta.dev/notes/', {
+                 method: 'POST',
+                 headers: {
+                   'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify({
+             // your expected POST request payload goes here
+                     title: note.title,
+                     body: note.body,
+                     author: note.author
+                    })
+                 });
+                 const data = await response.json();
+                 console.log(data);
+                window.location.href = "/task3/";
+               } catch(error) {
+
+                  console.log(error)
+                 } 
+            }
+
+
+
 const isSubmitting = ref(false)
-const onSubmit = () => alert('not implemented')
+const onSubmit = () => {
+
+let note: Note = {title: title.value, author:author.value, body: body.value};
+
+asyncPostCall(note);
+}
 </script>
 
 <template>

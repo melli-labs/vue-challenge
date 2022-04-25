@@ -7,7 +7,8 @@ const props = defineProps<{
 
 const dropdown = ref(false)
 const dropdownRef = ref(null)
-onClickOutside(dropdownRef, (event) => {
+onClickOutside(dropdownRef, (event) => { 
+
   event.stopPropagation()
   dropdown.value = false
 })
@@ -17,8 +18,67 @@ const title = ref(props.note.title)
 const body = ref(props.note.body)
 const isUpdating = false
 
-const deleteNote = () => alert('not implemented')
-const updateNote = () => alert('not implemented')
+const asyncPutCall = async (key: string,note:Note) => {
+            try {
+                const response = await fetch(`https://emilia-vue-challenge.deta.dev/notes/${key}`, {
+                 method: 'PUT',
+                 headers: {
+                   'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify({
+                     title: note.title,
+                     body: note.body,
+                     author: note.author
+                    })
+                 });
+                 const data = await response.json();
+                 console.log(data);
+                  window.location.href = "/task3/";
+               } catch(error) {
+
+                  console.log(error)
+                 } 
+            }
+
+            const asyncDeleteCall = async (key: string,note:Note) => {
+            try {
+                const response = await fetch(`https://emilia-vue-challenge.deta.dev/notes/${key}`, {
+                 method: 'DELETE',
+                 headers: {
+                   'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify({
+                     title: note.title,
+                     body: note.body,
+                     author: note.author
+                    })
+                 });
+                 const data = await response.json();
+                 console.log(data);
+                  window.location.href = "/task3/";
+               } catch(error) {
+
+                  console.log(error)
+                 } 
+            }
+
+
+
+
+
+
+
+const deleteNote = () =>{
+let note: Note = {title: title.value, author:props.note.author, body: body.value};
+
+asyncDeleteCall(props.note.key,note);
+}
+const updateNote = () =>  {
+let note: Note = {title: title.value, author:props.note.author, body: body.value};
+
+asyncPutCall(props.note.key,note);
+}
+
 </script>
 
 <template>
