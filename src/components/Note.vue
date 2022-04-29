@@ -1,29 +1,65 @@
 <script setup lang="ts">
-import type { Note } from '~/types'
+import type { Note } from "~/types";
 
 const props = defineProps<{
-  note: Note
-}>()
+  note: Note;
+}>();
 
-const dropdown = ref(false)
-const dropdownRef = ref(null)
+const dropdown = ref(false);
+const dropdownRef = ref(null);
 onClickOutside(dropdownRef, (event) => {
-  event.stopPropagation()
-  dropdown.value = false
-})
+  event.stopPropagation();
+  dropdown.value = false;
+});
 
-const edit = ref(false)
-const title = ref(props.note.title)
-const body = ref(props.note.body)
-const isUpdating = false
+const edit = ref(false);
+const title = ref(props.note.title);
+const body = ref(props.note.body);
+const isUpdating = false;
+const emits = defineEmits(["reload"]);
 
-const deleteNote = () => alert('not implemented')
-const updateNote = () => alert('not implemented')
+const deleteNote = async () => {
+  let text = "Are you sure you want to delete?";
+  if (confirm(text) == true) {
+    const response = await fetch(
+      `https://emilia-vue-challenge.deta.dev/notes/${props.note.key}`,
+      { method: "delete" }
+    ).then((res) =>
+      res.status === 200
+        ? (alert("Successfully deleted."), emits("reload"))
+        : alert("Something is wrong! try again.")
+    )
+  }
+};
+const updateNote = async() => {
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      title: title.value,
+      body: body.value,
+      author: props.note.author,
+    }),
+  };
+  await fetch(
+    `https://emilia-vue-challenge.deta.dev/notes/${props.note.key}`,
+    requestOptions,
+  ).then(res =>
+    res.status === 200
+      ? (alert("Successfully updated."), emits("reload"))
+      : alert("Something is wrong! try again.")
+  )
+  
+};
 </script>
 
 <template>
-  <div class="rounded-md bg-white border-2 border-primary-200 shadow-sm overflow-hidden">
-    <header class="px-3 py-2 flex bg-primary-100 gap-2 items-center text-sm text-primary-800">
+  <div
+    class="rounded-md bg-white border-2 border-primary-200 shadow-sm overflow-hidden"
+  >
+    <header
+      class="px-3 py-2 flex bg-primary-100 gap-2 items-center text-sm text-primary-800"
+    >
       <div
         class="h-10 w-10 uppercase rounded-full grid place-items-center font-bold bg-primary-50"
       >
@@ -31,7 +67,7 @@ const updateNote = () => alert('not implemented')
       </div>
       <div>
         <span>@{{ note.author }}</span>
-        <span class="opacity-65">{{ ' commented on ' }}</span>
+        <span class="opacity-65">{{ " commented on " }}</span>
         <span>{{ new Date(note.createdAt).toDateString() }}</span>
         <span v-if="note.updatedAt !== note.createdAt">· edited</span>
       </div>
@@ -76,21 +112,31 @@ const updateNote = () => alert('not implemented')
       </div>
     </header>
     <main class="p-6 text-gray-800 grid gap-2">
-      <input v-if="edit" v-model="title" class="input">
+      <input v-if="edit" v-model="title" class="input" />
       <h1 v-else class="font-medium text-lg">
         {{ note.title }}
       </h1>
-      <textarea v-if="edit" v-model="body" name="body" rows="3" class="min-h-40 p-4 input" />
+      <textarea
+        v-if="edit"
+        v-model="body"
+        name="body"
+        rows="3"
+        class="min-h-40 p-4 input"
+      />
       <p v-else>
         {{ note.body }}
       </p>
       <div v-if="edit" class="flex flex-row-reverse">
         <button
           class="bg-primary-50 font-medium rounded-md flex border-2 h-12 shadow-sm px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"
-          :class="isUpdating ? 'text-primary-500 border-primary-100' : 'text-primary-800  border-primary-200'"
+          :class="
+            isUpdating
+              ? 'text-primary-500 border-primary-100'
+              : 'text-primary-800  border-primary-200'
+          "
           @click="updateNote"
         >
-          {{ isUpdating ? 'Updating Note ...': 'Update Note' }}
+          {{ isUpdating ? "Updating Note ..." : "Update Note" }}
         </button>
         <button
           class="text-primary-800 font-medium rounded-md flex h-12 px-3 gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"

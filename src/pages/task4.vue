@@ -61,6 +61,7 @@ const selectedPerson = ref<Person | null>(null)
 
   <div class="min-h-screen p-4 bg-primary-50 grid place-items-center">
     <Phone>
+      <NavBar class="mt-auto" />
       <div class="h-full grid">
         <ContactDetail
           v-if="selectedPerson"
@@ -68,7 +69,6 @@ const selectedPerson = ref<Person | null>(null)
           @back="selectedPerson = null"
         />
         <ContactList v-else :people="people" @select="(i) => selectedPerson = people[i]" />
-        <NavBar class="mt-auto" />
       </div>
     </Phone>
   </div>
