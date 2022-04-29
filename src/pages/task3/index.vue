@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useFuse } from '@vueuse/integrations/useFuse'
+import { useFetch } from '@vueuse/core'
 import type { Note } from '~/types'
-
 const mockData: Note[] = [
   {
     title: 'One more thing',
@@ -31,12 +31,27 @@ const mockData: Note[] = [
     updatedAt: '2022-01-31 16:52:20',
   },
 ]
-
-const isFetching = false
+const isFetching = ref(true)
 const input = ref('')
-const { results } = useFuse(input, mockData, {
-  fuseOptions: { keys: ['title', 'body', 'author'] },
-  matchAllWhenSearchEmpty: true,
+const results = reactive({ value: null })
+
+async function setResults() {
+  const { error, data } = await useFetch('https://emilia-vue-challenge.deta.dev/notes')
+  if (!error.value) {
+    isFetching.value = false
+    const { results: res } = useFuse(input, JSON.parse(data.value), {
+      fuseOptions: { keys: ['title', 'body', 'author'] },
+      matchAllWhenSearchEmpty: true,
+    })
+    results.value = res
+  }
+  else {
+    alert('an error has occured while fetching data')
+  }
+}
+
+onMounted(async() => {
+  setResults()
 })
 </script>
 
@@ -69,8 +84,8 @@ const { results } = useFuse(input, mockData, {
     <div v-if="isFetching" class="min-h-xs grid place-items-center">
       <div class="i-tabler:loader-quarter animate-spin w-6 h-6 text-primary-800" />
     </div>
-    <div v-else-if="results.length > 0" class="grid gap-4 md:min-w-screen-sm lg:grid-cols-2">
-      <Note v-for="(result, index) in results" :key="index" :note="result.item" />
+    <div v-else-if="results.value?.length > 0" class="grid gap-4 md:min-w-screen-sm lg:grid-cols-2">
+      <Note v-for="(result, index) in results.value" :key="index" :note="result?.item" :refresh="setResults" />
     </div>
     <div v-else class="min-h-xs grid place-items-center text-2xl text-primary-700 font-medium tracking-wide">
       No results

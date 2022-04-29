@@ -3,6 +3,7 @@ import type { Note } from '~/types'
 
 const props = defineProps<{
   note: Note
+  refresh: any
 }>()
 
 const dropdown = ref(false)
@@ -15,10 +16,36 @@ onClickOutside(dropdownRef, (event) => {
 const edit = ref(false)
 const title = ref(props.note.title)
 const body = ref(props.note.body)
-const isUpdating = false
+const author = ref(props.note.author)
+const isUpdating = ref(false)
 
-const deleteNote = () => alert('not implemented')
-const updateNote = () => alert('not implemented')
+const deleteNote = async() => {
+  const response = await fetch(`https://emilia-vue-challenge.deta.dev/notes/${props.note.key}`, {
+    method: 'delete',
+  })
+  if (!response.ok)
+    alert('an error has occured while deleting new note')
+  props.refresh()
+  edit.value = false
+}
+const updateNote = async() => {
+  const response = await fetch(`https://emilia-vue-challenge.deta.dev/notes/${props.note.key}`, {
+    method: 'put',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      'accept': 'application/json',
+    },
+    body: JSON.stringify({
+      title: title.value,
+      author: author.value,
+      body: body.value,
+    }),
+  })
+  if (!response.ok)
+    alert('an error has occured while updating new note')
+  props.refresh()
+  edit.value = false
+}
 </script>
 
 <template>

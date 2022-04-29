@@ -3,8 +3,42 @@ const title = ref('')
 const author = ref('')
 const body = ref('')
 
+const updateTitle = (e) => {
+  title.value = e.target.value
+}
+
+const updateAuthor = (e) => {
+  author.value = e.target.value
+}
+
+const updateBody = (e) => {
+  body.value = e.target.value
+}
+
+const router = useRouter()
 const isSubmitting = ref(false)
-const onSubmit = () => alert('not implemented')
+const onSubmit = async() => {
+  const formData = new FormData()
+  formData.append('first_name', title.value)
+  formData.append('last_name', body.value)
+  formData.append('email', author.value)
+  const response = await fetch('https://emilia-vue-challenge.deta.dev/notes', {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      'accept': 'application/json',
+    },
+    body: JSON.stringify({
+      title: title.value,
+      author: author.value,
+      body: body.value,
+    }),
+  })
+  if (!response.ok)
+    alert('an error has occured while creating new note')
+
+  router.push('/task3')
+}
 </script>
 
 <template>
@@ -18,7 +52,7 @@ const onSubmit = () => alert('not implemented')
           <label for="title" class="">
             Title
           </label>
-          <input id="title" v-model="title" type="text" name="title" autocomplete="title" class="input">
+          <input id="title" v-model="title" type="text" name="title" autocomplete="title" class="input" @keyup.enter="updateTitle($event)">
         </div>
 
         <div class="grid gap-1">
