@@ -6,7 +6,7 @@ const mockData: Note[] = [
   {
     title: 'One more thing',
     body: 'There are some notes which are readonly 🔒️. These notes cannot be edited or deleted. But for the other notes we should be able to use the dropdown to edit ✍️ or delete ❌ them.',
-    author: 'Emilia',
+    author: 'Melli',
     key: 'f24jv9ss',
     readonly: true,
     createdAt: '2022-01-31 09:01:33',
@@ -43,26 +43,17 @@ const { results } = useFuse(input, mockData, {
 <template>
   <div class="grid gap-6">
     <div class="flex gap-4 flex-col sm:flex-row">
-      <router-link
-        to="/task3/new"
-        class="bg-primary-100 text-primary-800 font-medium rounded-md border-2 border-primary-200 h-12 shadow-sm px-3 flex gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"
-      >
+      <router-link to="/task3/new"
+        class="bg-primary-100 text-primary-800 font-medium rounded-md border-2 border-primary-200 h-12 shadow-sm px-3 flex gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300">
         <div class="i-heroicons-outline:plus" />New Note
       </router-link>
       <div
-        class="flex-grow bg-white rounded-md flex border-2 border-primary-200 h-12 shadow-sm px-3 gap-3 items-center focus-within:outline-none focus-within:border-primary-500 focus-within:ring-3 focus-within:ring-primary-300"
-      >
+        class="flex-grow bg-white rounded-md flex border-2 border-primary-200 h-12 shadow-sm px-3 gap-3 items-center focus-within:outline-none focus-within:border-primary-500 focus-within:ring-3 focus-within:ring-primary-300">
         <div class="h-6 text-primary-700 w-6 i-heroicons-outline:search" />
-        <input
-          v-model="input"
-          class="flex-grow h-full fill-primary-700 focus:outline-none"
-          autofocus
-        >
+        <input v-model="input" class="flex-grow h-full fill-primary-700 focus:outline-none" autofocus>
       </div>
-      <router-link
-        to="/task4"
-        class="bg-tertiary-100 text-tertiary-800 font-medium rounded-md border-2 border-tertiary-200 h-12 shadow-sm px-3 flex gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300"
-      >
+      <router-link to="/task4"
+        class="bg-tertiary-100 text-tertiary-800 font-medium rounded-md border-2 border-tertiary-200 h-12 shadow-sm px-3 flex gap-1.5 items-center focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-300">
         <div class="i-heroicons-outline:chevron-right" />Next task
       </router-link>
     </div>

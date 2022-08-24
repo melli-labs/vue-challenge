@@ -1,5 +1,5 @@
 <template>
-  <Emilia />
+  <Melli />
   <div class="h-screen bg-primary-50 grid place-items-center">
     <div class="text-center text-primary-700">
       <h1 class="text-8xl font-semibold tracking-wide">

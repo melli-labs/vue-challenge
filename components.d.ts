@@ -7,7 +7,7 @@ declare module 'vue' {
     Artwork: typeof import('./src/components/Artwork.vue')['default']
     ContactDetail: typeof import('./src/components/ContactDetail.vue')['default']
     ContactList: typeof import('./src/components/ContactList.vue')['default']
-    Emilia: typeof import('./src/components/ui/Emilia.vue')['default']
+    Melli: typeof import('./src/components/ui/Melli.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     Note: typeof import('./src/components/Note.vue')['default']
     Phone: typeof import('./src/components/ui/Phone.vue')['default']

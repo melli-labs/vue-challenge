@@ -13,10 +13,7 @@ const emit = defineEmits<{ (name: 'back'): void }>()
         Contacts
       </button>
     </header>
-    <img
-      :src="`https://meetap-it.gitlab.io/emilia/assets/team/${person.handle}.webp`"
-      class="w-40 h-40 rounded-full"
-    >
+    <img :src="`https://assets.melli.com/team/${person.handle}.webp`" class="w-40 h-40 rounded-full">
     <div>
       <div>{{ person.name }}</div>
       <div>{{ person.role }}</div>

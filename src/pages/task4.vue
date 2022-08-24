@@ -57,16 +57,12 @@ const selectedPerson = ref<Person | null>(null)
 </script>
 
 <template>
-  <Emilia />
+  <Melli />
 
   <div class="min-h-screen p-4 bg-primary-50 grid place-items-center">
     <Phone>
       <div class="h-full grid">
-        <ContactDetail
-          v-if="selectedPerson"
-          :person="selectedPerson"
-          @back="selectedPerson = null"
-        />
+        <ContactDetail v-if="selectedPerson" :person="selectedPerson" @back="selectedPerson = null" />
         <ContactList v-else :people="people" @select="(i) => selectedPerson = people[i]" />
         <NavBar class="mt-auto" />
       </div>

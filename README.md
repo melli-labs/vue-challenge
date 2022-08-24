@@ -1,6 +1,6 @@
-# Emilia Vue 🖖 Challenge
+# Melli Vue 🖖 Challenge
 
-Hi 👋, I am Emilia!
+Hi 👋, I am Melli!
 
 Can you solve my frontend challenge?
 

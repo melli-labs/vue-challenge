@@ -10,16 +10,8 @@ const emit = defineEmits<{ (name: 'select', v: number): void }>()
     <h1>Contacts</h1>
   </header>
   <ul class="overflow-y-auto">
-    <li
-      v-for="(person, index) in people"
-      :key="index"
-      class="cursor-pointer"
-      @click="emit('select', index)"
-    >
-      <img
-        :src="`https://meetap-it.gitlab.io/emilia/assets/team/${person.handle}.webp`"
-        class="w-12 h-12 rounded-full"
-      >
+    <li v-for="(person, index) in people" :key="index" class="cursor-pointer" @click="emit('select', index)">
+      <img :src="`https://assets.melli.com/team/${person.handle}.webp`" class="w-12 h-12 rounded-full">
       <div>{{ person.name }}</div>
       <div>{{ person.role }}</div>
     </li>

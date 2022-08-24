@@ -35,7 +35,7 @@ const messages: Record<string, Message> = {
   },
   '/end': {
     title: 'You solved the challenge 🔥',
-    description: 'Amazing 🤩! This is impressive. We would love to get in touch with you 💯. Therefore, create a pull request 📥️ with your solution ✅ at https://github.com/mit-emilia/vue-challenge!',
+    description: 'Amazing 🤩! This is impressive. We would love to get in touch with you 💯. Therefore, create a pull request 📥️ with your solution ✅ at https://github.com/melli-labs/vue-challenge!',
   },
 }
 
@@ -49,23 +49,15 @@ const message = computed(() => messages[route.path] ?? unknownRouteMessage)
 </script>
 
 <template>
-  <Transition
-    appear
-    enter-from-class="opacity-0 -translate-y-10"
-    leave-to-class="opacity-0 -translate-y-10"
-  >
+  <Transition appear enter-from-class="opacity-0 -translate-y-10" leave-to-class="opacity-0 -translate-y-10">
     <div v-if="show" class="max-w-screen-md fixed transition bottom-0 left-0 z-10 duration-200 absolute">
       <div
-        class="bg-white rounded-lg flex border-2 border-gray-200 shadow-sm mx-4 mb-4 p-8 gap-2 relative justify-between"
-      >
+        class="bg-white rounded-lg flex border-2 border-gray-200 shadow-sm mx-4 mb-4 p-8 gap-2 relative justify-between">
         <div class="bottom-full absolute pointer-events-none">
-          <img src="/emilia.svg" class="ml-20 w-sm">
+          <img src="/melli.svg" class="ml-20 w-sm">
           <Transition appear enter-from-class="opacity-0" leave-to-class="opacity-0">
-            <img
-              v-if="showGlasses"
-              src="/glasses.svg"
-              class="transition-opacity top-0 w-160px -rotate-12 translate-x-118px translate-y-83px duration-300 absolute"
-            >
+            <img v-if="showGlasses" src="/glasses.svg"
+              class="transition-opacity top-0 w-160px -rotate-12 translate-x-118px translate-y-83px duration-300 absolute">
           </Transition>
         </div>
         <div>
@@ -76,10 +68,8 @@ const message = computed(() => messages[route.path] ?? unknownRouteMessage)
             {{ message.description }}
           </p>
         </div>
-        <div
-          class="cursor-pointer flex-shrink-0 h-6 opacity-65 w-6 i-heroicons-outline:x hover:opacity-50"
-          @click="show = false"
-        />
+        <div class="cursor-pointer flex-shrink-0 h-6 opacity-65 w-6 i-heroicons-outline:x hover:opacity-50"
+          @click="show = false" />
       </div>
     </div>
   </Transition>
