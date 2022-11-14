@@ -1,10 +1,36 @@
 <script setup lang="ts">
+const router = useRouter()
+
 const title = ref('')
 const author = ref('')
 const body = ref('')
 
 const isSubmitting = ref(false)
-const onSubmit = () => alert('not implemented')
+// post notes on submit
+
+const onSubmit = async() => {
+  if (isSubmitting.value) return
+
+  isSubmitting.value = true
+  try {
+    await $fetch('https://emilia-vue-challenge.deta.dev/notes', {
+      method: 'POST',
+      body: {
+        title: title.value,
+        body: body.value,
+        author: author.value,
+      },
+    })
+
+    router.push('/task3')
+  }
+  catch (error) {
+    alert('Something went wrong')
+  }
+  finally {
+    isSubmitting.value = false
+  }
+}
 </script>
 
 <template>

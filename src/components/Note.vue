@@ -5,6 +5,11 @@ const props = defineProps<{
   note: Note
 }>()
 
+const emit = defineEmits<{
+  (e: 'delete', key: string): void
+  (e: 'update', note: Note): void
+}>()
+
 const dropdown = ref(false)
 const dropdownRef = ref(null)
 onClickOutside(dropdownRef, (event) => {
@@ -15,10 +20,46 @@ onClickOutside(dropdownRef, (event) => {
 const edit = ref(false)
 const title = ref(props.note.title)
 const body = ref(props.note.body)
-const isUpdating = false
+const isUpdating = ref(false)
 
-const deleteNote = () => alert('not implemented')
-const updateNote = () => alert('not implemented')
+const deleteNote = async() => {
+  try {
+    await $fetch(`https://emilia-vue-challenge.deta.dev/notes/${props.note.key}`, {
+      method: 'DELETE',
+    })
+    emit('delete', props.note.key)
+  }
+  catch (error) {
+    alert('Something went wrong')
+  }
+}
+const updateNote = async() => {
+  if (isUpdating.value) return
+
+  isUpdating.value = true
+  try {
+    await $fetch(`https://emilia-vue-challenge.deta.dev/notes/${props.note.key}`, {
+      method: 'PUT',
+      body: {
+        title: title.value,
+        body: body.value,
+        author: props.note.author,
+      },
+    })
+    emit('update', {
+      ...props.note,
+      title: title.value,
+      body: body.value,
+    })
+    edit.value = false
+  }
+  catch (error) {
+    alert('Something went wrong')
+  }
+  finally {
+    isUpdating.value = false
+  }
+}
 </script>
 
 <template>

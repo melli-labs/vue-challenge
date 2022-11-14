@@ -26,6 +26,9 @@ export default defineConfig({
         'vue',
         'vue-router',
         '@vueuse/core',
+        {
+          ohmyfetch: ['$fetch'],
+        },
       ],
       dts: true,
     }),
